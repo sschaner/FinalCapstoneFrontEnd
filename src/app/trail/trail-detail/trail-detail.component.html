@@ -1,1 +1,11 @@
-<p>trail-detail works!</p>
+<div *ngFor="let trail of trailResult">
+  <li><b>Trail name: </b>{{ trail.name }}</li>
+  <li><b>Trail length: </b>{{ trail.length }}</li>
+  <li><b>Trail description: </b>{{ trail.description }}</li>
+  <li><b>Directions: </b>{{ trail.directions }}</li>
+  <li><b>City: </b>{{ trail.city }}</li>
+  <li><b>Region: </b>{{ trail.region }}</li>
+  <li><b>Country: </b>{{ trail.country }}</li>
+  <li><b>Difficulty: </b>{{ trail.difficulty }}</li>
+  <li><img src="{{ trail.thumbnail }}" alt="Picture of this trail" /></li>
+</div>
