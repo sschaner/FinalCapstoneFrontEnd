@@ -1,1 +1,36 @@
-<p>trail-search works!</p>
+<div id="trailSearchComponent">
+    <form #locationForm="ngForm" (ngSubmit)="searchTrails(locationForm)">
+        <div class="form-group">
+            <label for="location">Location:</label>
+            <input name="location" id="location" class="form-control" ngModel />
+        </div>
+        <div>
+            <button type="submit" class="btn btn-lg btn-danger">Search</button>
+        </div>
+    </form>
+</div>
+<br>
+<div>
+    <h3>Trail Results</h3>
+    <ul>
+        <div *ngFor="let trail of trailResult">
+            <li>{{trail.name}}</li>
+            <ul>
+                <li>{{trail.length}}</li>
+                <li>{{trail.description}}</li>
+            </ul>
+        </div>
+    </ul>
+</div>
+<br>
+<div>
+    <h3>Current Weather</h3>
+    <ul>
+        <li>Location: {{weatherResult.location.name}}</li>
+        <li>Current Temp (F): {{weatherResult.current.temp_f}}</li>
+        <li>Current Temp (C): {{weatherResult.current.temp_c}}</li>
+        <li>Condition: {{weatherResult.current.condition.text}}</li>
+    </ul>
+</div>
+
+
