@@ -9,28 +9,27 @@
         </div>
     </form>
 </div>
-<br>
+<br />
 <div>
-    <h3>Trail Results</h3>
-    <ul>
-        <div *ngFor="let trail of trailResult">
-            <li>{{trail.name}}</li>
-            <ul>
-                <li>{{trail.length}}</li>
-                <li>{{trail.description}}</li>
-            </ul>
-        </div>
-    </ul>
+  <h3>Trail Results</h3>
+  <ul>
+    <div *ngFor="let trail of trailResult">
+      <a [routerLink]="['/trail-detail', trail.id]">{{ trail.name }}</a>
+      <!-- <li>{{ trail.name }}</li> -->
+      <ul>
+        <li>{{ trail.length }}</li>
+        <li>{{ trail.description }}</li>
+      </ul>
+    </div>
+  </ul>
 </div>
-<br>
+<br />
 <div>
-    <h3>Current Weather</h3>
-    <ul>
-        <li>Location: {{weatherResult.location.name}}</li>
-        <li>Current Temp (F): {{weatherResult.current.temp_f}}</li>
-        <li>Current Temp (C): {{weatherResult.current.temp_c}}</li>
-        <li>Condition: {{weatherResult.current.condition.text}}</li>
-    </ul>
+  <h3>Current Weather</h3>
+  <ul>
+    <li>Location: {{ weatherResult.location.name }}</li>
+    <li>Current Temp (F): {{ weatherResult.current.temp_f }}</li>
+    <li>Current Temp (C): {{ weatherResult.current.temp_c }}</li>
+    <li>Condition: {{ weatherResult.current.condition.text }}</li>
+  </ul>
 </div>
-
-

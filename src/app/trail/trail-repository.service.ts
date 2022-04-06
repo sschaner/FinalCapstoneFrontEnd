@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TrailRepositoryService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
+  private apiUri = 'https://localhost:44349/api/trail';
 
-  private apiUri = "https://localhost:44349/api/trail";
-
-  searchTrails(location: string){
-    console.log("called search trails api")
+  searchTrails(location: string) {
+    console.log('called search trails api');
     return this.http.get(`${this.apiUri}/?searchTerm=${location}`);
+  }
+
+  getTrailById(id: number) {
+    return this.http.get(`${this.apiUri}/${id}`);
   }
 }
