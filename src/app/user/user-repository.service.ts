@@ -1,9 +1,16 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { IUser } from '../interfaces/IUser';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserRepositoryService {
+  constructor(private http: HttpClient) {}
 
-  constructor() { }
+  private apiUri = 'https://localhost:44349/api/user';
+
+  saveNewUser(user: IUser) {
+    return this.http.post(this.apiUri, user).subscribe();
+  }
 }

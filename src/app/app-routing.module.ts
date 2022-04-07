@@ -3,9 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomepageComponent } from './home/homepage/homepage.component';
 import { TrailDetailComponent } from './trail/trail-detail/trail-detail.component';
 import { TrailSearchComponent } from './trail/trail-search/trail-search.component';
+import { UserRegisterComponent } from './user/user-register/user-register.component';
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent },
+  { path: 'register', component: UserRegisterComponent },
   { path: 'trail-search', component: TrailSearchComponent },
   {
     path: 'trail-detail/:trailId',
