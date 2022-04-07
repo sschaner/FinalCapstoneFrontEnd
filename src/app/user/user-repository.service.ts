@@ -8,7 +8,7 @@ import { IUser } from '../interfaces/IUser';
 export class UserRepositoryService {
   constructor(private http: HttpClient) {}
 
-  private apiUri = 'https://localhost:44349/api/user';
+  private apiUri = 'https://capstoneprojectapiservice.azure-api.net/api/User';
 
   saveNewUser(user: IUser) {
     return this.http.post(this.apiUri, user).subscribe();
