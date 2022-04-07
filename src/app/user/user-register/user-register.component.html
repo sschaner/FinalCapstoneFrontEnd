@@ -1,1 +1,50 @@
-<p>user-register works!</p>
+<form name="addUserForm" #addUserForm="ngForm">
+  <h3>Register as a User below.</h3>
+  <p>
+    As a registered user, you'll have the ability to save your favorite biking
+    trails to ride them later.
+  </p>
+  <div class="form-group">
+    <label for="userFirstName">First Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="userFirstName"
+      placeholder="Enter first name"
+      name="firstName"
+      ngModel
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="userLastName">Last Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="userLastName"
+      placeholder="Enter last name"
+      name="lastName"
+      ngModel
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="userEmail">Email</label>
+    <input
+      type="email"
+      class="form-control"
+      id="userEmail"
+      placeholder="Enter email"
+      name="email"
+      ngModel
+      required
+    />
+  </div>
+  <button
+    type="submit"
+    class="btn btn-primary text-uppercase"
+    (click)="saveNewUser(addUserForm)"
+  >
+    Submit
+  </button>
+</form>
