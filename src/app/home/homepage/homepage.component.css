@@ -9,5 +9,15 @@
 
 .title-content {
   min-height: 100vh;
-  color: white;
+  color: rgba(255, 184, 0, 1);
+}
+
+.title-content__subtitle,
+.title-content__main-title,
+.carousel-item h3 {
+  margin: 0;
+}
+
+.title-content__main-title {
+  letter-spacing: 0.5rem;
 }

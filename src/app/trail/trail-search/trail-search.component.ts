@@ -3,6 +3,12 @@ import { NgForm } from '@angular/forms';
 import { TrailRepositoryService } from '../trail-repository.service';
 import { WeatherRepositoryService } from '../weather-repository.service';
 
+import {
+  faCircleInfo,
+  faHeartCirclePlus,
+  faHeartCircleMinus,
+} from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-trail-search',
   templateUrl: './trail-search.component.html',
@@ -18,6 +24,9 @@ export class TrailSearchComponent implements OnInit {
 
   trailResult: any = [];
   weatherResult: any = [];
+  faCircleInfo = faCircleInfo;
+  faHeartCirclePlus = faHeartCirclePlus;
+  faHeartCircleMinus = faHeartCircleMinus;
 
   searchTrails(form: NgForm) {
     console.log('called search trails method');
@@ -37,4 +46,8 @@ export class TrailSearchComponent implements OnInit {
       });
     console.log(this.weatherResult);
   }
+
+  addTrailToFavorites(id: number) {}
+
+  removeTrailFromFavorites(id: number) {}
 }
