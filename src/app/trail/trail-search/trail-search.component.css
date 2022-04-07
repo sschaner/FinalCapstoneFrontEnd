@@ -1,4 +1,11 @@
-
 mat-expansion-panel {
-    margin-top: 0.5%;
+  margin-top: 0.5%;
+}
+
+.location-weather ul {
+  list-style-type: none;
+}
+
+.search-item-icons:not(:first-child) {
+  margin-left: 0.5rem;
 }

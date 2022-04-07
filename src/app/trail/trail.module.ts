@@ -5,10 +5,17 @@ import { TrailDetailComponent } from './trail-detail/trail-detail.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [TrailSearchComponent, TrailDetailComponent],
-  imports: [CommonModule, FormsModule, RouterModule, MatExpansionModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    MatExpansionModule,
+    FontAwesomeModule,
+  ],
   exports: [TrailSearchComponent, TrailDetailComponent],
 })
 export class TrailModule {}
