@@ -9,10 +9,10 @@ export class WeatherRepositoryService {
 
   constructor(private http: HttpClient) { }
 
-  private apiUri = "https://localhost:44349/api/weather";
+  private apiUri = "https://capstoneprojectapiservice.azure-api.net/api/weather";
 
   getCurrentWeather(location: string){
     console.log("called current weather api")
-    return this.http.get(`${this.apiUri}/?searchTerm=${location}`);
+    return this.http.get(`${this.apiUri}?searchTerm=${location}`);
   }
 }
