@@ -9,13 +9,56 @@
         </div>
     </form>
 </div>
+
 <br />
+
+<h3>Trail Results</h3>
+<div *ngFor="let trail of trailResult">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header >
+      <mat-panel-title>
+        <a [routerLink]="['/trail-detail', trail.id]">{{ trail.name }}</a>  
+      </mat-panel-title>
+    
+    <mat-panel-description >
+      <h5>Length: {{ trail.length }}</h5>  
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+    <li>{{ trail.description }}</li>
+  </mat-expansion-panel>
+</div>
+
 <div>
+  <h3>Current Weather</h3>
+  <ul>
+    <li>Location: {{ weatherResult.location.name }}</li>
+    <li>Current Temp (F): {{ weatherResult.current.temp_f }}</li>
+    <li>Current Temp (C): {{ weatherResult.current.temp_c }}</li>
+    <li>Condition: {{ weatherResult.current.condition.text }}</li>
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div>
   <h3>Trail Results</h3>
   <ul>
     <div *ngFor="let trail of trailResult">
       <a [routerLink]="['/trail-detail', trail.id]">{{ trail.name }}</a>
-      <!-- <li>{{ trail.name }}</li> -->
       <ul>
         <li>{{ trail.length }}</li>
         <li>{{ trail.description }}</li>
@@ -32,4 +75,6 @@
     <li>Current Temp (C): {{ weatherResult.current.temp_c }}</li>
     <li>Condition: {{ weatherResult.current.condition.text }}</li>
   </ul>
-</div>
+</div> -->
+
+

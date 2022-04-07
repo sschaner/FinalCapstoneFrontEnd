@@ -1,3 +1,10 @@
-#trailSearchComponent{
-    margin-top: 10% !important;
+.mat-expansion-panel-header-title, .mat-expansion-panel-header-description{
+    flex-basis: 20% !important;
 }
+
+mat-expansion-panel{
+    margin-left: 5% !important;
+    margin-right: 5% !important;
+    margin-top: 0.5% !important;
+}
+
