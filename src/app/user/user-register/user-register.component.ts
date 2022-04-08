@@ -13,8 +13,8 @@ export class UserRegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   saveNewUser(form: NgForm) {
-    let upMeet = form.form.value;
+    let user = form.form.value;
 
-    this.userService.saveNewUser(upMeet);
+    this.userService.saveNewUser(user);
   }
 }

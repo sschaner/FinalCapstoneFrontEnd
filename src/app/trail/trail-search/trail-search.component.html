@@ -25,19 +25,20 @@
   <div class="row">
     <div class="location-weather text-center">
       <h3>Current Weather in {{ weatherResult.location.name }}</h3>
-      <ul>
-        <li>
-          Current Temp (&#8457;): {{ weatherResult.current.temp_f }} &#8457;
-        </li>
-        <li>
-          Current Temp (&#8451;): {{ weatherResult.current.temp_c }} &#8451;
-        </li>
-        <li>Condition: {{ weatherResult.current.condition.text }}</li>
-      </ul>
+      <div>
+        Current Temp (&#8457;): {{ weatherResult.current.temp_f }}&#8457;
+      </div>
+      <div>
+        Current Temp (&#8451;): {{ weatherResult.current.temp_c }}&#8451;
+      </div>
+      <div class="mt-2">
+        <div>{{ weatherResult.current.condition.text }}</div>
+        <img src="{{ weatherResult.current.condition.icon }}" />
+      </div>
     </div>
   </div>
   <div class="row">
-    <h3 *ngIf="trailResult.length > 0">Trail Results</h3>
+    <h3 *ngIf="trailResult.length > 0">Trails Near You</h3>
     <div *ngFor="let trail of trailResult">
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -53,17 +54,17 @@
           <a
             class="search-item-icons"
             [routerLink]="['/trail-detail', trail.id]"
-            ><fa-icon [icon]="faCircleInfo"></fa-icon
+            ><fa-icon class="fa-xl" [icon]="faCircleInfo"></fa-icon
           ></a>
           <a
             class="search-item-icons text-danger"
             (click)="addTrailToFavorites(trail.id)"
-            ><fa-icon [icon]="faHeartCirclePlus"></fa-icon
+            ><fa-icon class="fa-xl" [icon]="faHeartCirclePlus"></fa-icon
           ></a>
           <a
             class="search-item-icons text-warning"
             (click)="removeTrailFromFavorites(trail.id)"
-            ><fa-icon [icon]="faHeartCircleMinus"></fa-icon
+            ><fa-icon class="fa-xl" [icon]="faHeartCircleMinus"></fa-icon
           ></a>
         </div>
       </mat-expansion-panel>

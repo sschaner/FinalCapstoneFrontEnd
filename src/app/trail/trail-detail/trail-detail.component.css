@@ -1,0 +1,12 @@
+img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+@media (min-width: 992px) {
+  .detail-description {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
