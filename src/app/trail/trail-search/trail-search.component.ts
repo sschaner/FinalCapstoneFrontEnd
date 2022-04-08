@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { TrailRepositoryService } from '../trail-repository.service';
 import { WeatherRepositoryService } from '../weather-repository.service';
+import { IUser } from 'src/app/interfaces/IUser';
 
 import {
   faCircleInfo,
@@ -9,6 +10,8 @@ import {
   faHeartCircleMinus,
 } from '@fortawesome/free-solid-svg-icons';
 import { UserRepositoryService } from 'src/app/user/user-repository.service';
+import { isTypeQueryNode } from 'typescript';
+import { NONE_TYPE } from '@angular/compiler';
 
 @Component({
   selector: 'app-trail-search',
@@ -16,6 +19,7 @@ import { UserRepositoryService } from 'src/app/user/user-repository.service';
   styleUrls: ['./trail-search.component.css'],
 })
 export class TrailSearchComponent implements OnInit {
+  
   constructor(
     private trailService: TrailRepositoryService,
     private weatherService: WeatherRepositoryService,
@@ -24,6 +28,7 @@ export class TrailSearchComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("hit trail search on init")
+
     this.userService.getCurrentUser().subscribe(value => {this.currentUser = value});
 
       console.log(this.currentUser)
@@ -34,7 +39,8 @@ export class TrailSearchComponent implements OnInit {
   faCircleInfo = faCircleInfo;
   faHeartCirclePlus = faHeartCirclePlus;
   faHeartCircleMinus = faHeartCircleMinus;
-  currentUser: any;
+  currentUser: any | null;
+  
 
   searchTrails(form: NgForm) {
     console.log('called search trails method');
