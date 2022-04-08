@@ -1,13 +1,45 @@
 <div class="mt-90px">
   <div *ngFor="let trail of trailResult">
-    <li><b>Trail name: </b>{{ trail.name }}</li>
-    <li><b>Trail length: </b>{{ trail.length }}</li>
-    <li><b>Trail description: </b>{{ trail.description }}</li>
-    <li><b>Directions: </b>{{ trail.directions }}</li>
-    <li><b>City: </b>{{ trail.city }}</li>
-    <li><b>Region: </b>{{ trail.region }}</li>
-    <li><b>Country: </b>{{ trail.country }}</li>
-    <li><b>Difficulty: </b>{{ trail.difficulty }}</li>
-    <li><img src="{{ trail.thumbnail }}" alt="Picture of this trail" /></li>
+    <div class="row">
+      <div class="detail-title-content text-center">
+        <h1>{{ trail.name }}</h1>
+        <p class="detail-description">{{ trail.description }}</p>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="card mb-3 p-0">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img
+              src="{{ trail.thumbnail }}"
+              class="img-fluid rounded-start"
+              alt="Picture of trail"
+            />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <b>Trail length: </b>{{ trail.length }}
+                </li>
+                <li class="list-group-item">
+                  <b>Directions: </b>{{ trail.directions }}
+                </li>
+                <li class="list-group-item"><b>City: </b>{{ trail.city }}</li>
+                <li class="list-group-item">
+                  <b>Region: </b>{{ trail.region }}
+                </li>
+                <li class="list-group-item">
+                  <b>Country: </b>{{ trail.country }}
+                </li>
+                <li class="list-group-item">
+                  <b>Difficulty: </b>{{ trail.difficulty }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

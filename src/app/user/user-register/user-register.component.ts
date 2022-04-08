@@ -16,12 +16,13 @@ export class UserRegisterComponent implements OnInit {
 
   saveNewUser(form: NgForm) {
     let user = form.form.value;
+
+    this.userService.saveNewUser(user);
     console.log("called save new user method");
     console.log(user);
     this.userService.saveNewUser(user);
    this.userService.setCurrentUser(user);
 
     this.router.navigate(['/trail-search']);
-
   }
 }
