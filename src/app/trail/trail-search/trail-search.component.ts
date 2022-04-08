@@ -8,6 +8,7 @@ import {
   faHeartCirclePlus,
   faHeartCircleMinus,
 } from '@fortawesome/free-solid-svg-icons';
+import { UserRepositoryService } from 'src/app/user/user-repository.service';
 
 @Component({
   selector: 'app-trail-search',
@@ -17,16 +18,23 @@ import {
 export class TrailSearchComponent implements OnInit {
   constructor(
     private trailService: TrailRepositoryService,
-    private weatherService: WeatherRepositoryService
-  ) {}
+    private weatherService: WeatherRepositoryService,
+    private userService: UserRepositoryService
+  ) {};
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log("hit trail search on init")
+    this.userService.getCurrentUser().subscribe(value => {this.currentUser = value});
+
+      console.log(this.currentUser)
+  }
 
   trailResult: any = [];
   weatherResult: any = [];
   faCircleInfo = faCircleInfo;
   faHeartCirclePlus = faHeartCirclePlus;
   faHeartCircleMinus = faHeartCircleMinus;
+  currentUser: any;
 
   searchTrails(form: NgForm) {
     console.log('called search trails method');
