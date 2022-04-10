@@ -39,7 +39,7 @@ export class TrailSearchComponent implements OnInit {
     });
     console.log('current user first name below ');
   }
-
+  
   searchTrails(form: NgForm) {
     console.log('called search trails method');
 

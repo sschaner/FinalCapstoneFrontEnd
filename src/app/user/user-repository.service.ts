@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IUser } from '../interfaces/IUser';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Route, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,7 @@ export class UserRepositoryService {
     email: '',
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   private apiUri = 'https://capstoneprojectapiservice.azure-api.net/api/User';
   private _currentUser: BehaviorSubject<IUser> | any = new BehaviorSubject(
@@ -38,18 +39,7 @@ export class UserRepositoryService {
       this.tempUser.lastName = this.user.lastName;
       this.tempUser.email = this.user.email;
     });
-    // this.http
-    //   .get(`${this.apiUri}?searchTerm=${email}`)
-    //   .subscribe((response) => {
-    //     this.user = response;
-    //   });
-
-    /*  let user: IUser = {
-      firstName: 'gggggg',
-      lastName: 'gggggggg',
-      email: 'ggggggggggggg',
-      userId: -1
-    } */
+    
     console.log(this.tempUser);
     this.setCurrentUser(this.tempUser);
   }
