@@ -19,6 +19,13 @@ import { NONE_TYPE } from '@angular/compiler';
   styleUrls: ['./trail-search.component.css'],
 })
 export class TrailSearchComponent implements OnInit {
+  trailResult: any = [];
+  weatherResult: any = [];
+  faCircleInfo = faCircleInfo;
+  faHeartCirclePlus = faHeartCirclePlus;
+  faHeartCircleMinus = faHeartCircleMinus;
+  currentUser: any;
+
   constructor(
     private trailService: TrailRepositoryService,
     private weatherService: WeatherRepositoryService,
@@ -26,20 +33,13 @@ export class TrailSearchComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log("hit trail search on init")
-    this.userService.getCurrentUser().subscribe(value => {this.currentUser = value});
-    console.log('current user first name below ')
+    console.log('hit trail search on init');
+    this.userService.getCurrentUser().subscribe((value) => {
+      this.currentUser = value;
+    });
+    console.log('current user first name below ');
   }
-
-  trailResult: any = [];
-  weatherResult: any = [];
-  faCircleInfo = faCircleInfo;
-  faHeartCirclePlus = faHeartCirclePlus;
-  faHeartCircleMinus = faHeartCircleMinus;
-
-  currentUser: any = [];
-
-
+  
   searchTrails(form: NgForm) {
     console.log('called search trails method');
 

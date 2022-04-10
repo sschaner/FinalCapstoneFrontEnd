@@ -37,8 +37,13 @@
         >
       </li>
     </ul>
+    <div *ngIf="currentUser">Welcome {{ currentUser.firstName }}</div>
     <div class="d-flex align-items-center">
-      <form class="form-inline my-2 my-lg-0 d-flex" name="LoginUserForm" #LoginUserForm="ngForm">
+      <form
+        class="form-inline my-2 my-lg-0 d-flex"
+        name="LoginUserForm"
+        #LoginUserForm="ngForm"
+      >
         <input
           class="form-control mr-sm-2"
           type="text"
@@ -46,17 +51,20 @@
           aria-label="login"
           id="email"
           name="email"
-
           ngModel
         />
         <button
           class="btn btn-outline-success my-2 my-sm-0 text-uppercase"
-          type="submit" (click)="login(LoginUserForm)"
+          type="submit"
+          (click)="login(LoginUserForm)"
         >
           login
         </button>
       </form>
-      <button class="btn btn-outline-success my-2 my-sm-0 text-uppercase" (click)="logout()">
+      <button
+        class="btn btn-outline-success my-2 my-sm-0 text-uppercase"
+        (click)="logout()"
+      >
         logout
       </button>
       <ul class="navbar-nav">
