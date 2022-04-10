@@ -28,10 +28,8 @@ export class TrailSearchComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("hit trail search on init")
-
     this.userService.getCurrentUser().subscribe(value => {this.currentUser = value});
-
-      console.log(this.currentUser)
+    console.log('current user first name below ')
   }
 
   trailResult: any = [];
@@ -39,7 +37,7 @@ export class TrailSearchComponent implements OnInit {
   faCircleInfo = faCircleInfo;
   faHeartCirclePlus = faHeartCirclePlus;
   faHeartCircleMinus = faHeartCircleMinus;
-  currentUser: any | null;
+  currentUser: any;
   
 
   searchTrails(form: NgForm) {

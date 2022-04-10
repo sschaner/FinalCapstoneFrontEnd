@@ -44,6 +44,10 @@
       </div>
     </div>
   </div>
+
+
+
+
   <div class="row">
     <h3 *ngIf="trailResult.length > 0">Trails Near You</h3>
     <div *ngFor="let trail of trailResult">
@@ -78,3 +82,5 @@
     </div>
   </div>
 </div>
+
+<h3>current user: {{currentUser.userId}}</h3>
