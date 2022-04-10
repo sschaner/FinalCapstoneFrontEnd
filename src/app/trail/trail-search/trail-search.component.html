@@ -1,6 +1,5 @@
-
-
 <div class="mt-90px">
+  <h1 class="text-center">Welcome {{ currentUser.firstName }}</h1>
   <div class="row">
     <div class="trail-search-title text-uppercase text-center">
       <h1>Trail Search</h1>
@@ -25,10 +24,6 @@
     </form>
   </div>
 
-  
-
-
-
   <div class="row">
     <div class="location-weather text-center">
       <h3>Current Weather in {{ weatherResult.location.name }}</h3>
@@ -45,11 +40,10 @@
     </div>
   </div>
 
-
-
-
   <div class="row">
-    <h3 *ngIf="trailResult.length > 0">Trails Near You</h3>
+    <h3 *ngIf="trailResult.length > 0">
+      Trails Near {{ weatherResult.location.name }}
+    </h3>
     <div *ngFor="let trail of trailResult">
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -82,5 +76,3 @@
     </div>
   </div>
 </div>
-
-<h3>current user: {{currentUser.userId}}</h3>

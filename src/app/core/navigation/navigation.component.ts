@@ -10,30 +10,37 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./navigation.component.css'],
 })
 export class NavigationComponent implements OnInit {
-  constructor(private userService: UserRepositoryService, private router: Router) {}
+  currentUser: any | undefined;
 
+  constructor(
+    private userService: UserRepositoryService,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userService.getCurrentUser().subscribe((value) => {
+      this.currentUser = value;
+    });
+  }
 
   logout() {
-    console.log('called logout method in navigation')
+    console.log('called logout method in navigation');
     let emptyUser: IUser = {
       firstName: '',
       lastName: '',
       email: '',
-      userId: -1
-    }
+      userId: -1,
+    };
     this.userService.setCurrentUser(emptyUser);
-    console.log(this.userService.getCurrentUser())
+    console.log(this.userService.getCurrentUser());
     this.router.navigate(['/home']);
   }
 
-  login(form: NgForm){
-    console.log('called login method in nav component')
+  login(form: NgForm) {
+    console.log('called login method in nav component');
     let email = form.form.value.email;
-    console.log('email variable:', email)
+    console.log('email variable:', email);
     this.userService.loginUser(email);
     this.router.navigate(['/trail-search']);
-
   }
 }
