@@ -2,16 +2,22 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IUser } from '../interfaces/IUser';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Route, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserRepositoryService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   private apiUri = 'https://capstoneprojectapiservice.azure-api.net/api/User';
   private _currentUser: BehaviorSubject<IUser> | any = new BehaviorSubject(null);
-  private user: any;
+    user: IUser | any = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    userId: -1
+  };
   
 
   saveNewUser(user: IUser) {
@@ -22,29 +28,20 @@ export class UserRepositoryService {
 
   loginUser(email: string){
     
-   /*   this.returnUserByEmail(email).subscribe((response) => {
+   this.returnUserByEmail(email).subscribe((response) => {
       this.user = response;
-    }); */ 
-    this.http.get(`${this.apiUri}?searchTerm=${email}`).subscribe((response) => {this.user = response;});
-    
-   /*  let user: IUser = {
-      firstName: 'gggggg',
-      lastName: 'gggggggg',
-      email: 'ggggggggggggg',
-      userId: -1
-    } */
-    
-    
+    }); 
+       
     console.log("current user: ", this.user)
     this.setCurrentUser(this.user);
+    this.router.navigate(['/home']);
   }
 
 
   returnUserByEmail(email: string){
     console.log("called return user by email method")
     console.log('URI used:',`${this.apiUri}?searchTerm=${email}`)
-    return this.http.get<any>(`${this.apiUri}?searchTerm=${email}`);
-    //return this.http.get("https://finalcapstonebackend20220406191528.azurewebsites.net/api/user?searchTerm=test").subscribe()
+    return this.http.get(`${this.apiUri}?searchTerm=${email}`);
   }
 
   getCurrentUser(): Observable<IUser>{
