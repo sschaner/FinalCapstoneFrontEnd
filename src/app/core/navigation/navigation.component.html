@@ -38,21 +38,25 @@
       </li>
     </ul>
     <div class="d-flex align-items-center">
-      <form class="form-inline my-2 my-lg-0 d-flex">
+      <form class="form-inline my-2 my-lg-0 d-flex" name="LoginUserForm" #LoginUserForm="ngForm">
         <input
           class="form-control mr-sm-2"
-          type="search"
+          type="text"
           placeholder="email@something.com"
           aria-label="login"
+          id="email"
+          name="email"
+
+          ngModel
         />
         <button
           class="btn btn-outline-success my-2 my-sm-0 text-uppercase"
-          type="submit"
+          type="submit" (click)="login(LoginUserForm)"
         >
           login
         </button>
       </form>
-      <button class="btn btn-outline-success my-2 my-sm-0 text-uppercase">
+      <button class="btn btn-outline-success my-2 my-sm-0 text-uppercase" (click)="logout()">
         logout
       </button>
       <ul class="navbar-nav">
