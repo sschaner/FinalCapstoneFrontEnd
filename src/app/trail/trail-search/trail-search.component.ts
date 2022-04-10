@@ -37,7 +37,7 @@ export class TrailSearchComponent implements OnInit {
   faCircleInfo = faCircleInfo;
   faHeartCirclePlus = faHeartCirclePlus;
   faHeartCircleMinus = faHeartCircleMinus;
-  currentUser: any;
+  currentUser: any = [];
   
 
   searchTrails(form: NgForm) {
