@@ -87,5 +87,7 @@ export class UserRepositoryService {
       `${this.favoritesApiUri}?userId=${userId}&trailId=${id}`,
       { id, userId }
     );
+  returnUserFavoriteTrails(userId: number){
+    return this.http.get(`https://capstoneprojectapiservice.azure-api.net/api/UserTrail?userId=${userId}`);
   }
 }
