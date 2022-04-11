@@ -33,13 +33,11 @@ export class TrailSearchComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('hit trail search on init');
     this.userService.getCurrentUser().subscribe((value) => {
       this.currentUser = value;
     });
-    console.log('current user first name below ');
   }
-  
+
   searchTrails(form: NgForm) {
     console.log('called search trails method');
 
