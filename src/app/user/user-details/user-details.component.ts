@@ -23,6 +23,9 @@ export class UserDetailsComponent implements OnInit {
     this.userService.getCurrentUser().subscribe((value) => {
       this.currentUser = value;
     });    
+
+    this.userService.returnUserFavoriteTrails(this.currentUser.userId).subscribe((value) => {this.userFavorites = value});
+
   }
 
   removeTrailFromFavorites(id: number){
