@@ -77,4 +77,8 @@ export class UserRepositoryService {
     console.log(user);
     this._currentUser.next(user);
   }
+
+  returnUserFavoriteTrails(userId: number){
+    return this.http.get(`https://capstoneprojectapiservice.azure-api.net/api/UserTrail?userId=${userId}`);
+  }
 }
