@@ -18,6 +18,8 @@ export class UserRepositoryService {
   constructor(private http: HttpClient, private router: Router) {}
 
   private apiUri = 'https://capstoneprojectapiservice.azure-api.net/api/User';
+  private favoritesApiUri =
+    'https://capstoneprojectapiservice.azure-api.net/api/UserTrail';
   private emptyUser: IUser = {
     firstName: '',
     lastName: '',
@@ -25,7 +27,9 @@ export class UserRepositoryService {
     userId: -1,
   };
 
-  private _currentUser: BehaviorSubject<IUser> | any = new BehaviorSubject(this.emptyUser);
+  private _currentUser: BehaviorSubject<IUser> | any = new BehaviorSubject(
+    this.emptyUser
+  );
   private user: any;
 
   saveNewUser(user: IUser) {
@@ -76,5 +80,12 @@ export class UserRepositoryService {
     console.log('called set current user in user repo service');
     console.log(user);
     this._currentUser.next(user);
+  }
+
+  addFavoriteTrail(id: number, userId: number) {
+    return this.http.post(
+      `${this.favoritesApiUri}?userId=${userId}&trailId=${id}`,
+      { id, userId }
+    );
   }
 }
