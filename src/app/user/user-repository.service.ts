@@ -18,9 +18,13 @@ export class UserRepositoryService {
   constructor(private http: HttpClient, private router: Router) {}
 
   private apiUri = 'https://capstoneprojectapiservice.azure-api.net/api/User';
-  private _currentUser: BehaviorSubject<IUser> | any = new BehaviorSubject(
-    null
-  );
+  private emptyUser: IUser = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    userId: -1,
+  };
+  private _currentUser: BehaviorSubject<IUser> | any = new BehaviorSubject(this.emptyUser);
   private user: any;
 
   saveNewUser(user: IUser) {

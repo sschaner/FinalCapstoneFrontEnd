@@ -36,6 +36,14 @@
           >Trails</a
         >
       </li>
+      <li class="nav-item active">
+        <a
+          class="nav-link text-uppercase"
+          [routerLink]="['/app-user-details']"
+          routerLinkActive="active"
+          >Favorites</a
+        >
+      </li>
     </ul>
     <div *ngIf="currentUser">Welcome {{ currentUser.firstName }}</div>
     <div class="d-flex align-items-center">
