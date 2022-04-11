@@ -17,7 +17,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
      FormsModule, 
      MatExpansionModule, 
      RouterModule,
-    FontAwesomeModule],
+     FontAwesomeModule],
   exports: [UserRegisterComponent],
 })
 export class UserModule {}
