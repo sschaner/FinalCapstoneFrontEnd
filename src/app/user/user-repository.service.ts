@@ -18,8 +18,14 @@ export class UserRepositoryService {
   constructor(private http: HttpClient, private router: Router) {}
 
   private apiUri = 'https://capstoneprojectapiservice.azure-api.net/api/User';
+  private emptyUser: IUser = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    userId: -1,
+  };
   private _currentUser: BehaviorSubject<IUser> | any = new BehaviorSubject(
-    null
+    this.emptyUser
   );
   private user: any;
 
@@ -39,7 +45,7 @@ export class UserRepositoryService {
       this.tempUser.lastName = this.user.lastName;
       this.tempUser.email = this.user.email;
     });
-    
+
     console.log(this.tempUser);
     this.setCurrentUser(this.tempUser);
   }
@@ -55,6 +61,15 @@ export class UserRepositoryService {
 
   getCurrentUser(): Observable<IUser> {
     console.log(this._currentUser.asObservable());
+    if (this._currentUser.asObservable == undefined) {
+      let emptyUser: IUser = {
+        firstName: '',
+        lastName: '',
+        email: '',
+        userId: -1,
+      };
+      this.setCurrentUser(emptyUser);
+    }
     return this._currentUser.asObservable();
   }
 
