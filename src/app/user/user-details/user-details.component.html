@@ -1,0 +1,31 @@
+<p>user-details works!</p>
+
+
+
+<div class="mt-90px">
+
+    <h1 class="text-center">Welcome {{ currentUser.firstName }} {{currentUser.lastName}}</h1>
+
+    <h3>You have favorited a total of {{userFavorites.length}} trails</h3>
+    <div *ngFor="let favorite of userFavorites">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{ favorite.name }}
+                </mat-panel-title>
+                <mat-panel-description>
+                    <h5>Length: {{ favorite.length }}</h5>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div>{{ favorite.description }}</div>
+            <div class="d-flex">
+                <a class="search-item-icons" [routerLink]="['/trail-detail', favorite.id]">
+                    <fa-icon class="fa-xl" [icon]="faCircleInfo"></fa-icon>
+                </a>
+                <a class="search-item-icons text-warning" (click)="removeTrailFromFavorites(favorite.id)">
+                    <fa-icon class="fa-xl" [icon]="faHeartCircleMinus"></fa-icon>
+                </a>
+            </div>
+        </mat-expansion-panel>
+    </div>
+</div>
