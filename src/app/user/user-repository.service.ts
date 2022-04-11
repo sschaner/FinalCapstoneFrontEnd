@@ -24,9 +24,8 @@ export class UserRepositoryService {
     email: '',
     userId: -1,
   };
-  private _currentUser: BehaviorSubject<IUser> | any = new BehaviorSubject(
-    this.emptyUser
-  );
+
+  private _currentUser: BehaviorSubject<IUser> | any = new BehaviorSubject(this.emptyUser);
   private user: any;
 
   saveNewUser(user: IUser) {

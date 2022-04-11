@@ -9,7 +9,5 @@ import { UserRepositoryService } from 'src/app/user/user-repository.service';
 export class HomepageComponent implements OnInit {
   currentUser: any;
 
-  constructor(private userService: UserRepositoryService) {}
-
   ngOnInit(): void {}
 }
