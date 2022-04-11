@@ -58,13 +58,10 @@ export class TrailSearchComponent implements OnInit {
   }
 
   addTrailToFavorites(id: number) {
-    this.currentUser = this.userService
-      .getCurrentUser()
-      .subscribe((response) => {
-        this.currentUser = response;
-      });
-    console.log(this.currentUser);
+    let userId = this.currentUser.userId;
+    console.log(this.currentUser.firstName);
     console.log({ id });
+    this.userService.addFavoriteTrail(id, userId).subscribe();
   }
 
   removeTrailFromFavorites(id: number) {}
