@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   declarations: [TrailSearchComponent, TrailDetailComponent],
@@ -15,6 +16,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     RouterModule,
     MatExpansionModule,
     FontAwesomeModule,
+    GoogleMapsModule,
   ],
   exports: [TrailSearchComponent, TrailDetailComponent],
 })
