@@ -28,8 +28,8 @@ export class UserDetailsComponent implements OnInit {
 
   }
 
-  removeTrailFromFavorites(id: number){
-      
+  removeTrailFromFavorites(trailId: number){
+    this.userService.deleteTrailFromFavorites(this.currentUser.userId, trailId).subscribe();      
   }
 
 }
