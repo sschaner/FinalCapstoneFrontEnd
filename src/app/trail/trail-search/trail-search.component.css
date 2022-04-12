@@ -10,6 +10,6 @@ mat-expansion-panel {
   margin-left: 0.5rem;
 }
 
-/* .search-item-icons:hover {
+.search-item-icons:hover {
   cursor: pointer;
-} */
+}
