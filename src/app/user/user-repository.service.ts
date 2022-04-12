@@ -86,8 +86,15 @@ export class UserRepositoryService {
     return this.http.post(
       `${this.favoritesApiUri}?userId=${userId}&trailId=${id}`,
       { id, userId }
-    );
-  returnUserFavoriteTrails(userId: number){
-    return this.http.get(`https://capstoneprojectapiservice.azure-api.net/api/UserTrail?userId=${userId}`);
-  }
+    );}
+
+    returnUserFavoriteTrails(userId: number){
+      return this.http.get(`https://capstoneprojectapiservice.azure-api.net/api/UserTrail?userId=${userId}`);
+    }
+
+    deleteTrailFromFavorites(userId: number, trailId: number){
+      return this.http.delete(`https://finalcapstonebackend20220406191528.azurewebsites.net/api/UserTrail?userId=${userId}&trailId=${trailId}`);
+
+    }
+  
 }
