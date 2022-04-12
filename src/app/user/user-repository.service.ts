@@ -92,11 +92,10 @@ export class UserRepositoryService {
   returnUserFavoriteTrails(userId: number) {
     return this.http.get(`${this.favoritesApiUri}?userId=${userId}`);
   }
-=======
-    );}
 
-    deleteTrailFromFavorites(userId: number, trailId: number){
-      return this.http.delete(`https://finalcapstonebackend20220406191528.azurewebsites.net/api/UserTrail?userId=${userId}&trailId=${trailId}`);
-
-    }
+  deleteTrailFromFavorites(userId: number, trailId: number) {
+    return this.http.delete(
+      `https://finalcapstonebackend20220406191528.azurewebsites.net/api/UserTrail?userId=${userId}&trailId=${trailId}`
+    );
+  }
 }
