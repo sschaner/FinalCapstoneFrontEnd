@@ -13,6 +13,7 @@ import { HomeModule } from './home/home.module';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +30,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowserAnimationsModule,
     MatExpansionModule,
     FontAwesomeModule,
+    GoogleMapsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

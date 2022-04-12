@@ -24,7 +24,6 @@ export class NavigationComponent implements OnInit {
   }
 
   logout() {
-    console.log('called logout method in navigation');
     let emptyUser: IUser = {
       firstName: '',
       lastName: '',
@@ -32,14 +31,11 @@ export class NavigationComponent implements OnInit {
       userId: -1,
     };
     this.userService.setCurrentUser(emptyUser);
-    console.log(this.userService.getCurrentUser());
     this.router.navigate(['/home']);
   }
 
   login(form: NgForm) {
-    console.log('called login method in nav component');
     let email = form.form.value.email;
-    console.log('email variable:', email);
     this.userService.loginUser(email);
     this.router.navigate(['/trail-search']);
   }

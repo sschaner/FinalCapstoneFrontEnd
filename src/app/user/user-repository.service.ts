@@ -8,77 +8,56 @@ import { Route, Router } from '@angular/router';
   providedIn: 'root',
 })
 export class UserRepositoryService {
-  tempUser: IUser = {
+  private tempUser: IUser = {
     userId: -1,
     firstName: '',
     lastName: '',
     email: '',
   };
-
-  constructor(private http: HttpClient, private router: Router) {}
+  private _currentUser: BehaviorSubject<IUser> | any = new BehaviorSubject(
+    this.tempUser
+  );
+  private user: any;
 
   private apiUri = 'https://capstoneprojectapiservice.azure-api.net/api/User';
   private favoritesApiUri =
     'https://capstoneprojectapiservice.azure-api.net/api/UserTrail';
-  private emptyUser: IUser = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    userId: -1,
-  };
 
-  private _currentUser: BehaviorSubject<IUser> | any = new BehaviorSubject(
-    this.emptyUser
-  );
-  private user: any;
+  constructor(private http: HttpClient, private router: Router) {}
 
   saveNewUser(user: IUser) {
-    console.log('called save new user method in repository service');
-    console.log(user);
     return this.http.post(this.apiUri, user).subscribe();
   }
 
   loginUser(email: string) {
     this.returnUserByEmail(email).subscribe((response) => {
       this.user = response;
-      // console.log(this.user);
-      // console.log('current user: ', this.user);
       this.tempUser.userId = this.user.userId;
       this.tempUser.firstName = this.user.firstName;
       this.tempUser.lastName = this.user.lastName;
       this.tempUser.email = this.user.email;
     });
-
-    console.log(this.tempUser);
     this.setCurrentUser(this.tempUser);
   }
 
   returnUserByEmail(email: string) {
-    console.log(email);
-    console.log('called return user by email method');
-    console.log('URI used:', `${this.apiUri}?searchTerm=${email}`);
-    console.log(this.http.get<any>(`${this.apiUri}?searchTerm=${email}`));
     return this.http.get<any>(`${this.apiUri}?searchTerm=${email}`);
-    //return this.http.get("https://finalcapstonebackend20220406191528.azurewebsites.net/api/user?searchTerm=test").subscribe()
   }
 
   getCurrentUser(): Observable<IUser> {
-    console.log(this._currentUser.asObservable());
     if (this._currentUser.asObservable == undefined) {
-      let emptyUser: IUser = {
+      this.tempUser = {
         firstName: '',
         lastName: '',
         email: '',
         userId: -1,
       };
-      this.setCurrentUser(emptyUser);
+      this.setCurrentUser(this.tempUser);
     }
     return this._currentUser.asObservable();
   }
 
   setCurrentUser(user: IUser) {
-    console.log('called set current user in user repo service');
-    console.log(user);
     this._currentUser.next(user);
   }
 
@@ -92,11 +71,10 @@ export class UserRepositoryService {
   returnUserFavoriteTrails(userId: number) {
     return this.http.get(`${this.favoritesApiUri}?userId=${userId}`);
   }
-=======
-    );}
 
-    deleteTrailFromFavorites(userId: number, trailId: number){
-      return this.http.delete(`https://finalcapstonebackend20220406191528.azurewebsites.net/api/UserTrail?userId=${userId}&trailId=${trailId}`);
-
-    }
+  deleteTrailFromFavorites(userId: number, trailId: number) {
+    return this.http.delete(
+      `${this.favoritesApiUri}?userId=${userId}&trailId=${trailId}`
+    );
+  }
 }
