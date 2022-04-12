@@ -45,7 +45,9 @@
         >
       </li>
     </ul>
-    <div *ngIf="currentUser">Welcome {{ currentUser.firstName }}</div>
+    <div *ngIf="currentUser.userId !== -1">
+      Welcome {{ currentUser.firstName }}
+    </div>
     <div class="d-flex align-items-center">
       <form
         class="form-inline my-2 my-lg-0 d-flex"

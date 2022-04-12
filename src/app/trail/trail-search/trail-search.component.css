@@ -9,3 +9,7 @@ mat-expansion-panel {
 .search-item-icons:not(:first-child) {
   margin-left: 0.5rem;
 }
+
+/* .search-item-icons:hover {
+  cursor: pointer;
+} */
