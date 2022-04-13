@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +32,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
     MatExpansionModule,
     FontAwesomeModule,
     GoogleMapsModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { UserRepositoryService } from 'src/app/user/user-repository.service';
 
 @Component({
   selector: 'app-homepage',
@@ -7,7 +6,5 @@ import { UserRepositoryService } from 'src/app/user/user-repository.service';
   styleUrls: ['./homepage.component.css'],
 })
 export class HomepageComponent implements OnInit {
-  currentUser: any;
-
   ngOnInit(): void {}
 }

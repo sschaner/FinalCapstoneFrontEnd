@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { faHandPointLeft } from '@fortawesome/free-solid-svg-icons';
 import { TrailRepositoryService } from '../trail-repository.service';
-import { WeatherRepositoryService } from '../weather-repository.service';
 
 @Component({
   selector: 'app-trail-detail',
@@ -28,7 +27,6 @@ export class TrailDetailComponent implements OnInit {
 
   constructor(
     private trailService: TrailRepositoryService,
-    private weatherService: WeatherRepositoryService,
     private route: ActivatedRoute
   ) {}
 
@@ -40,8 +38,6 @@ export class TrailDetailComponent implements OnInit {
         this.trailResult = response;
         this.latitude = parseInt(this.trailResult[0].lat);
         this.longitude = parseInt(this.trailResult[0].lon);
-        console.log(`latitude: ${this.latitude}`);
-        console.log(`longitude: ${this.longitude}`);
         this.center = {
           lat: this.latitude,
           lng: this.longitude,
