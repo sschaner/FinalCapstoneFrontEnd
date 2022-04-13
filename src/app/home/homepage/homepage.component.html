@@ -6,21 +6,18 @@
 >
   <h3 class="title-content__subtitle text-uppercase">find your next trail</h3>
   <h1 class="title-content__main-title text-uppercase">sunny - trails</h1>
-  <div
-    id="carouselExampleSlidesOnly"
-    class="carousel slide"
-    data-bs-ride="carousel"
+  <ngb-carousel
+    [showNavigationArrows]="false"
+    [showNavigationIndicators]="false"
   >
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <h3 class="text-uppercase">Bike</h3>
-      </div>
-      <div class="carousel-item">
-        <h3 class="text-uppercase">Hike</h3>
-      </div>
-      <div class="carousel-item">
-        <h3 class="text-uppercase">Appreciate Nature</h3>
-      </div>
-    </div>
-  </div>
+    <ng-template ngbSlide>
+      <h3 class="text-uppercase">Bike</h3>
+    </ng-template>
+    <ng-template ngbSlide>
+      <h3 class="text-uppercase">Hike</h3>
+    </ng-template>
+    <ng-template ngbSlide>
+      <h3 class="text-uppercase">Appreciate Nature</h3>
+    </ng-template>
+  </ngb-carousel>
 </div>
