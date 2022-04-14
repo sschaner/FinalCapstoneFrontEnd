@@ -4,6 +4,10 @@ img {
   border-radius: 10px;
 }
 
+.map-zoom-button:not(:first-child) {
+  margin-left: 0.5rem;
+}
+
 @media (min-width: 992px) {
   .detail-description {
     max-width: 600px;
