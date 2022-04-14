@@ -37,8 +37,8 @@ export class TrailDetailComponent implements OnInit {
       .getTrailById(this.trailId)
       .subscribe((response) => {
         this.trailResult = response;
-        this.latitude = parseInt(this.trailResult[0].lat);
-        this.longitude = parseInt(this.trailResult[0].lon);
+        this.latitude = parseFloat(this.trailResult[0].lat);
+        this.longitude = parseFloat(this.trailResult[0].lon);
         this.center = {
           lat: this.latitude,
           lng: this.longitude,
