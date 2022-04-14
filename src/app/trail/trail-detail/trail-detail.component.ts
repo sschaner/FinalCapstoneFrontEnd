@@ -17,13 +17,14 @@ export class TrailDetailComponent implements OnInit {
   options: google.maps.MapOptions = {
     mapTypeId: 'hybrid',
     zoomControl: false,
-    scrollwheel: false,
+    scrollwheel: true,
     disableDoubleClickZoom: true,
     maxZoom: 15,
     minZoom: 8,
   };
   latitude: number = 0;
   longitude: number = 0;
+  marker: any;
 
   constructor(
     private trailService: TrailRepositoryService,
@@ -42,6 +43,25 @@ export class TrailDetailComponent implements OnInit {
           lat: this.latitude,
           lng: this.longitude,
         };
+        this.marker = {
+          position: {
+            lat: this.latitude,
+            lng: this.longitude,
+          },
+          // options: { animation: google.maps.Animation.BOUNCE },
+        };
       });
+  }
+
+  zoomIn() {
+    if (this.zoom < this.options.maxZoom!) {
+      this.zoom++;
+    }
+  }
+
+  zoomOut() {
+    if (this.zoom > this.options.minZoom!) {
+      this.zoom--;
+    }
   }
 }
