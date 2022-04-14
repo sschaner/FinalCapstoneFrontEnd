@@ -16,11 +16,11 @@ export class TrailDetailComponent implements OnInit {
   center!: google.maps.LatLngLiteral;
   options: google.maps.MapOptions = {
     mapTypeId: 'hybrid',
-    zoomControl: false,
+    zoomControl: true,
     scrollwheel: true,
     disableDoubleClickZoom: true,
-    maxZoom: 15,
-    minZoom: 8,
+    maxZoom: 30,
+    minZoom: 3,
   };
   latitude: number = 0;
   longitude: number = 0;
@@ -37,8 +37,8 @@ export class TrailDetailComponent implements OnInit {
       .getTrailById(this.trailId)
       .subscribe((response) => {
         this.trailResult = response;
-        this.latitude = parseInt(this.trailResult[0].lat);
-        this.longitude = parseInt(this.trailResult[0].lon);
+        this.latitude = parseFloat(this.trailResult[0].lat);
+        this.longitude = parseFloat(this.trailResult[0].lon);
         this.center = {
           lat: this.latitude,
           lng: this.longitude,
@@ -51,17 +51,5 @@ export class TrailDetailComponent implements OnInit {
           // options: { animation: google.maps.Animation.BOUNCE },
         };
       });
-  }
-
-  zoomIn() {
-    if (this.zoom < this.options.maxZoom!) {
-      this.zoom++;
-    }
-  }
-
-  zoomOut() {
-    if (this.zoom > this.options.minZoom!) {
-      this.zoom--;
-    }
   }
 }
