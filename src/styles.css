@@ -1,3 +1,7 @@
 .mt-90px {
   margin-top: 5.625rem;
 }
+
+.mat-expansion-panel-header-title, .mat-expansion-panel-header-description{
+  flex-basis: 20%;
+}

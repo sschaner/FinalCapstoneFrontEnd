@@ -9,19 +9,9 @@
     </div>
   </div>
   <div class="row">
-    <form
-      class="form-inline text-center"
-      #locationForm="ngForm"
-      (ngSubmit)="searchTrails(locationForm)"
-    >
+    <form class="form-inline text-center" #locationForm="ngForm" (ngSubmit)="searchTrails(locationForm)">
       <label class="sr-only" for="location">Location:</label>
-      <input
-        name="location"
-        id="location"
-        class=""
-        placeholder="Enter a location"
-        ngModel
-      />
+      <input name="location" id="location" class="" placeholder="Enter a location" ngModel />
       <button type="submit" class="btn btn-sm btn-danger">Search</button>
     </form>
   </div>
@@ -42,39 +32,40 @@
     </div>
   </div>
 
+  <ngb-alert #selfClosingAlert *ngIf="successMessage" type="success" (closed)="successMessage = ''">{{ successMessage }}
+  </ngb-alert>
+
   <div class="row">
     <h3 *ngIf="trailResult.length > 0">
       Trails Near {{ weatherResult.location.name }}
     </h3>
     <div *ngFor="let trail of trailResult">
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{ trail.name }}
-          </mat-panel-title>
-          <mat-panel-description>
-            <h5>Length: {{ trail.length }}</h5>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div>{{ trail.description }}</div>
-        <div class="d-flex">
-          <a
-            class="search-item-icons"
-            [routerLink]="['/trail-detail', trail.id]"
-            ><fa-icon class="fa-xl" [icon]="faCircleInfo"></fa-icon
-          ></a>
-          <a
-            class="search-item-icons text-danger"
-            (click)="addTrailToFavorites(trail.id)"
-            ><fa-icon class="fa-xl" [icon]="faHeartCirclePlus"></fa-icon
-          ></a>
-          <a
-            class="search-item-icons text-warning"
-            (click)="removeTrailFromFavorites(trail.id)"
-            ><fa-icon class="fa-xl" [icon]="faHeartCircleMinus"></fa-icon
-          ></a>
-        </div>
-      </mat-expansion-panel>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ trail.name }}
+            </mat-panel-title>
+            <mat-panel-description>
+              <h5>Length: {{ trail.length }}</h5>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div>{{ trail.description }}</div>
+          <div class="d-flex">
+            <a class="search-item-icons first-search-item-return" [routerLink]="['/trail-detail', trail.id]">
+              <fa-icon class="fa-xl" [icon]="faCircleInfo"></fa-icon>
+            </a>
+            <div  *ngIf="currentUser.email !== '' ">
+              <a class="search-item-icons text-danger" (click)="addTrailToFavorites(trail.id)">
+                <fa-icon class="fa-xl" [icon]="faHeartCirclePlus"></fa-icon>
+              </a>
+              <a class="search-item-icons text-warning" (click)="removeTrailFromFavorites(trail.id)">
+                <fa-icon class="fa-xl" [icon]="faHeartCircleMinus"></fa-icon>
+              </a>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
     </div>
   </div>
 </div>
