@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [TrailSearchComponent, TrailDetailComponent],
@@ -17,6 +19,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
     MatExpansionModule,
     FontAwesomeModule,
     GoogleMapsModule,
+    NgbAlertModule
   ],
   exports: [TrailSearchComponent, TrailDetailComponent],
 })

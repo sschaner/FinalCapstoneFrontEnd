@@ -13,3 +13,13 @@ mat-expansion-panel {
 .search-item-icons:hover {
   cursor: pointer;
 }
+
+ngb-alert{
+  text-align: center;
+}
+
+.first-search-item-return{
+  margin-right: 00.5rem;
+}
+
+

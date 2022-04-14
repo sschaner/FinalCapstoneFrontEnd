@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { GoogleMapsModule } from '@angular/google-maps';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlert, NgbAlertModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,6 +33,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FontAwesomeModule,
     GoogleMapsModule,
     NgbModule,
+    NgbAlertModule
   ],
   providers: [],
   bootstrap: [AppComponent],
