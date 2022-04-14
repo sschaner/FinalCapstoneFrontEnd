@@ -54,22 +54,6 @@
           [options]="marker.options"
         ></map-marker>
       </google-map>
-      <div class="map-zoom-buttons mb-3">
-        <button
-          type="button"
-          class="text-uppercase btn btn-sm btn-outline-secondary map-zoom-button"
-          (click)="zoomIn()"
-        >
-          Zoom in
-        </button>
-        <button
-          type="button"
-          class="text-uppercase btn btn-sm btn-outline-secondary map-zoom-button"
-          (click)="zoomOut()"
-        >
-          Zoom out
-        </button>
-      </div>
     </div>
   </div>
   <button [routerLink]="['/trail-search']" class="btn btn-outline-primary">
