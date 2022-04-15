@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserRepositoryService } from '../user-repository.service';
 import {
   faCircleInfo,
-  faHeartCirclePlus,
   faHeartCircleMinus,
 } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
@@ -10,11 +9,12 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-user-details',
   templateUrl: './user-details.component.html',
-  styleUrls: ['./user-details.component.css']
+  styleUrls: ['./user-details.component.css'],
 })
 export class UserDetailsComponent implements OnInit {
 
   constructor(private userService: UserRepositoryService, private router: Router) { }
+
   currentUser: any;
   userFavorites: any = [];
   faCircleInfo = faCircleInfo;
@@ -24,11 +24,15 @@ export class UserDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getCurrentUser().subscribe((value) => {
       this.currentUser = value;
-    });    
+    });
 
-    this.userService.returnUserFavoriteTrails(this.currentUser.userId).subscribe((value) => {this.userFavorites = value});
-
+    this.userService
+      .returnUserFavoriteTrails(this.currentUser.userId)
+      .subscribe((value) => {
+        this.userFavorites = value;
+      });
   }
+
 
   removeTrailFromFavorites(trailId: number){
     this.userService.deleteTrailFromFavorites(this.currentUser.userId, trailId).subscribe(); 
@@ -41,5 +45,6 @@ export class UserDetailsComponent implements OnInit {
         this.router.navigate([currentUrl]);
     });
 }
+
 
 }

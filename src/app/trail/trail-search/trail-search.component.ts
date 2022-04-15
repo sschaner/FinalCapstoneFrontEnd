@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  EventEmitter,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { TrailRepositoryService } from '../trail-repository.service';
 import { WeatherRepositoryService } from '../weather-repository.service';
@@ -29,6 +35,8 @@ export class TrailSearchComponent implements OnInit {
   staticAlertClosed = false;
   private _success = new Subject<string>();
   @ViewChild('selfClosingAlert', { static: false }) selfClosingAlert: NgbAlert;
+  @Output() myOutput: EventEmitter<string> = new EventEmitter();
+  outputMessage: string;
 
   constructor(
     private trailService: TrailRepositoryService,
@@ -49,15 +57,12 @@ export class TrailSearchComponent implements OnInit {
   }
 
   searchTrails(form: NgForm) {
-    console.log('called search trails method');
-
     let location: string = form.form.value.location;
     this.trailResult = this.trailService
       .searchTrails(location)
       .subscribe((response) => {
         this.trailResult = response;
       });
-    console.log(this.trailResult);
 
     this.weatherResult = this.weatherService
       .getCurrentWeather(location)
