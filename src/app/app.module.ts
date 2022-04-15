@@ -10,11 +10,12 @@ import { CoreModule } from './core/core.module';
 import { TrailModule } from './trail/trail.module';
 import { UserModule } from './user/user.module';
 import { HomeModule } from './home/home.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { NgbAlert, NgbAlertModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,7 +34,9 @@ import { NgbAlert, NgbAlertModule, NgbModule } from '@ng-bootstrap/ng-bootstrap'
     FontAwesomeModule,
     GoogleMapsModule,
     NgbModule,
-    NgbAlertModule
+    NgbAlertModule,
+    ReactiveFormsModule,
+    RxReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
