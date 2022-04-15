@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IUser } from 'src/app/interfaces/IUser';
 import { UserRepositoryService } from 'src/app/user/user-repository.service';
 import { Router } from '@angular/router';
@@ -11,6 +11,7 @@ import { NgForm } from '@angular/forms';
 })
 export class NavigationComponent implements OnInit {
   currentUser: any | undefined;
+  val: boolean = true;
 
   constructor(
     private userService: UserRepositoryService,

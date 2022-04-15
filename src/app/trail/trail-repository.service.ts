@@ -10,8 +10,6 @@ export class TrailRepositoryService {
   private apiUri = 'https://capstoneprojectapiservice.azure-api.net/api/trail';
 
   searchTrails(location: string) {
-    console.log('called search trails api');
-    console.log(`${this.apiUri}?searchTerm=${location}`)
     return this.http.get(`${this.apiUri}?searchTerm=${location}`);
   }
 
