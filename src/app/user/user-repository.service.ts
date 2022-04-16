@@ -25,7 +25,7 @@ export class UserRepositoryService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  saveNewUser(user: IUser) {
+  saveNewUser(user) {
     return this.http.post(this.apiUri, user).subscribe();
   }
 
@@ -41,6 +41,7 @@ export class UserRepositoryService {
   }
 
   returnUserByEmail(email: string) {
+    console.log(`${this.apiUri}?searchTerm=${email}`)
     return this.http.get<any>(`${this.apiUri}?searchTerm=${email}`);
   }
 

@@ -1,10 +1,17 @@
-import { required } from "@rxweb/reactive-form-validators";
+import { alpha, email, required } from "@rxweb/reactive-form-validators";
 
 export class User{
+
 @required()
-userEmail: string;
+@email()
+email: string;
 
+@required()
+@alpha()
+firstName: string;
 
-
-
+@required()
+@alpha()
+lastName: string;
 }
+
