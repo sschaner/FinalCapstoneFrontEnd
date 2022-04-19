@@ -3,6 +3,8 @@ import { IUser } from 'src/app/interfaces/IUser';
 import { UserRepositoryService } from 'src/app/user/user-repository.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Content } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
   selector: 'app-navigation',
@@ -14,7 +16,8 @@ export class NavigationComponent implements OnInit {
 
   constructor(
     private userService: UserRepositoryService,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -34,8 +37,18 @@ export class NavigationComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  login(form: NgForm) {
+  async login(form: NgForm, content) {
     let email = form.form.value.email;
-    this.userService.loginUser(email);
+    let tempUser = await this.userService.returnUserByEmail(email).toPromise();    
+    
+     if(tempUser === null || tempUser === undefined){
+      this.openSm(content)
+     }else{
+      this.userService.loginUser(email);
+    }
+  }
+
+  openSm(content) {
+    this.modalService.open(content, { size: 'sm' });
   }
 }
