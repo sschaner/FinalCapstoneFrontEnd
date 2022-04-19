@@ -56,6 +56,14 @@ export class TrailSearchComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit() {
+    document.querySelector('nav').classList.add('gray');
+  }
+
+  ngOnDestroy() {
+    document.querySelector('nav').classList.remove('gray');
+  }
+
   searchTrails(form: NgForm) {
     let location: string = form.form.value.location;
     this.trailResult = this.trailService

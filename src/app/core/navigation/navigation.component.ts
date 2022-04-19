@@ -11,7 +11,6 @@ import { NgForm } from '@angular/forms';
 })
 export class NavigationComponent implements OnInit {
   currentUser: any | undefined;
-  val: boolean = true;
 
   constructor(
     private userService: UserRepositoryService,

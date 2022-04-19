@@ -16,10 +16,15 @@ mat-expansion-panel {
   list-style-type: none;
 }
 
-.location-weather {
+.location-weather,
+.trail-search-title {
   background-color: #ccc;
   opacity: 0.8;
   border-radius: 20px;
+}
+
+.temperature-fahrenheit {
+  margin-right: 1rem;
 }
 
 .search-item-icons:not(:first-child) {
