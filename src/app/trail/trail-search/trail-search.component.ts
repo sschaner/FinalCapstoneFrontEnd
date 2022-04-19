@@ -35,8 +35,6 @@ export class TrailSearchComponent implements OnInit {
   staticAlertClosed = false;
   private _success = new Subject<string>();
   @ViewChild('selfClosingAlert', { static: false }) selfClosingAlert: NgbAlert;
-  @Output() myOutput: EventEmitter<string> = new EventEmitter();
-  outputMessage: string;
 
   constructor(
     private trailService: TrailRepositoryService,
@@ -45,17 +43,25 @@ export class TrailSearchComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log("trail search on init ran")
+    console.log('trail search on init ran');
     this.userService.getCurrentUser().subscribe((value) => {
       this.currentUser = value;
     });
-    console.log("current user", this.currentUser)
+    console.log('current user', this.currentUser);
     this._success.subscribe((message) => (this.successMessage = message));
     this._success.pipe(debounceTime(1500)).subscribe(() => {
       if (this.selfClosingAlert) {
         this.selfClosingAlert.close();
       }
     });
+  }
+
+  ngAfterViewInit() {
+    document.querySelector('nav').classList.add('gray');
+  }
+
+  ngOnDestroy() {
+    document.querySelector('nav').classList.remove('gray');
   }
 
   searchTrails(form: NgForm) {

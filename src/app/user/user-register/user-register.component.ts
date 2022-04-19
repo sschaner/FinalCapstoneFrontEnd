@@ -18,20 +18,35 @@ import { retry, catchError } from 'rxjs/operators';
   styleUrls: ['./user-register.component.css'],
 })
 export class UserRegisterComponent implements OnInit {
-  
-  constructor(private userService: UserRepositoryService, private router: Router, private formBuilder: RxFormBuilder) {}
+  constructor(
+    private userService: UserRepositoryService,
+    private router: Router,
+    private formBuilder: RxFormBuilder
+  ) {}
 
   ngOnInit(): void {
-    this.user = new User;
-    this.userFormGroup = this.formBuilder.formGroup(this.user)
+    this.user = new User();
+    this.userFormGroup = this.formBuilder.formGroup(this.user);
+  }
+
+  ngAfterViewInit() {
+    document.querySelector('body').classList.add('bg-register');
+    document.querySelector('nav').classList.add('gray');
+  }
+
+  ngOnDestroy() {
+    document.querySelector('body').classList.remove('bg-register');
+    document.querySelector('nav').classList.remove('gray');
   }
 
   userFormGroup: FormGroup;
   user: User;
   newUser: any;
   errorObject = {}
+
   currentUser: IUser;
   successMessage = '';
+
   failureMessage = '';
   tempUser: IUser | any = {};
   makeNewUser: boolean;
@@ -39,13 +54,14 @@ export class UserRegisterComponent implements OnInit {
 
    saveNewUser(form: NgForm) {
     let user = form.form.value;
-    console.log(user)
+    console.log(user);
     this.userService.saveNewUser(user);
     //this.userService.saveNewUser(user);
     this.userService.setCurrentUser(user);
 
-   // this.router.navigate(['/trail-search']);
-  } 
+    // this.router.navigate(['/trail-search']);
+  }
+
 
 
    async onSubmit() {
@@ -72,6 +88,7 @@ export class UserRegisterComponent implements OnInit {
       console.log('triggered final else statement in onsubmit method')
       this.failureMessage = 'Sorry, looks like there is already a user with that email. Try another to get started!';
     }  
+
   }
   
 

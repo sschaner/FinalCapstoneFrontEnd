@@ -11,7 +11,6 @@ import { NgForm } from '@angular/forms';
 })
 export class NavigationComponent implements OnInit {
   currentUser: any | undefined;
-  val: boolean = true;
 
   constructor(
     private userService: UserRepositoryService,
@@ -38,6 +37,5 @@ export class NavigationComponent implements OnInit {
   login(form: NgForm) {
     let email = form.form.value.email;
     this.userService.loginUser(email);
-    this.router.navigate(['/trail-search']);
   }
 }
