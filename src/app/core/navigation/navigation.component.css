@@ -6,9 +6,7 @@
   color: rgba(255, 184, 0, 0.55);
 }
 
-.modal-header, .modal-footer{
+.modal-header,
+.modal-footer {
   background-color: #c96d63;
 }
-
-
-

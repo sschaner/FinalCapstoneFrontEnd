@@ -13,6 +13,7 @@ import { Content } from '@angular/compiler/src/render3/r3_ast';
 })
 export class NavigationComponent implements OnInit {
   currentUser: any | undefined;
+  email: any | undefined;
 
   constructor(
     private userService: UserRepositoryService,
@@ -38,13 +39,15 @@ export class NavigationComponent implements OnInit {
   }
 
   async login(form: NgForm, content) {
-    let email = form.form.value.email;
-    let tempUser = await this.userService.returnUserByEmail(email).toPromise();    
-    
-     if(tempUser === null || tempUser === undefined){
-      this.openSm(content)
-     }else{
-      this.userService.loginUser(email);
+    this.email = form.form.value.email;
+    let tempUser = await this.userService
+      .returnUserByEmail(this.email)
+      .toPromise();
+
+    if (tempUser === null || tempUser === undefined) {
+      this.openSm(content);
+    } else {
+      this.userService.loginUser(this.email);
     }
   }
 
