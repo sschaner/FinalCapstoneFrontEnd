@@ -13,6 +13,10 @@
   flex-basis: 20%;
 }
 
+.modal-content {
+  border: none;
+}
+
 .bg-register {
   background-color: #ccc;
 }
