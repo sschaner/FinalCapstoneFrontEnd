@@ -3,8 +3,8 @@
   <h1 class="text-center" *ngIf="currentUser.userId !== -1">
     Welcome {{ currentUser.firstName }}
   </h1>
-  <div class="row">
-    <div class="trail-search-title text-uppercase text-center">
+  <div class="row justify-content-center">
+    <div class="trail-search-title text-uppercase text-center w-auto m-3 p-3">
       <h1>Trail Search</h1>
       <p>Find your next trail</p>
     </div>
@@ -30,12 +30,13 @@
   <div *ngIf="trailResult.length > 0" class="row justify-content-center">
     <div class="location-weather text-center w-auto m-4 p-4">
       <h3>Current Weather in {{ weatherResult.location.name }}</h3>
-      <div>
-        Current Temp (&#8457;): {{ weatherResult.current.temp_f }}&#8457;
+      <div class="current-temprature-container d-flex justify-content-center">
+        <div class="temperature-fahrenheit">
+          {{ weatherResult.current.temp_f }}&#8457;
+        </div>
+        <div>{{ weatherResult.current.temp_c }}&#8451;</div>
       </div>
-      <div>
-        Current Temp (&#8451;): {{ weatherResult.current.temp_c }}&#8451;
-      </div>
+
       <div class="mt-2">
         <div>{{ weatherResult.current.condition.text }}</div>
         <img src="{{ weatherResult.current.condition.icon }}" />

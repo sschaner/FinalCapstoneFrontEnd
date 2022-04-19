@@ -52,4 +52,12 @@ export class TrailDetailComponent implements OnInit {
         };
       });
   }
+
+  ngAfterViewInit() {
+    document.querySelector('nav').classList.add('gray');
+  }
+
+  ngOnDestroy() {
+    document.querySelector('nav').classList.remove('gray');
+  }
 }

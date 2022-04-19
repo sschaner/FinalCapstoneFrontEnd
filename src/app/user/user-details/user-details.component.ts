@@ -12,14 +12,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-details.component.css'],
 })
 export class UserDetailsComponent implements OnInit {
-
-  constructor(private userService: UserRepositoryService, private router: Router) { }
+  constructor(
+    private userService: UserRepositoryService,
+    private router: Router
+  ) {}
 
   currentUser: any;
   userFavorites: any = [];
   faCircleInfo = faCircleInfo;
   faHeartCircleMinus = faHeartCircleMinus;
-  
 
   ngOnInit(): void {
     this.userService.getCurrentUser().subscribe((value) => {
@@ -33,18 +34,29 @@ export class UserDetailsComponent implements OnInit {
       });
   }
 
+  ngAfterViewInit() {
+    document.querySelector('nav').classList.add('gray');
+  }
 
-  removeTrailFromFavorites(trailId: number){
-    this.userService.deleteTrailFromFavorites(this.currentUser.userId, trailId).subscribe(); 
-    this.userService.returnUserFavoriteTrails(this.currentUser.userId).subscribe((value) => {this.userFavorites = value});
+  ngOnDestroy() {
+    document.querySelector('nav').classList.remove('gray');
+  }
+
+  removeTrailFromFavorites(trailId: number) {
+    this.userService
+      .deleteTrailFromFavorites(this.currentUser.userId, trailId)
+      .subscribe();
+    this.userService
+      .returnUserFavoriteTrails(this.currentUser.userId)
+      .subscribe((value) => {
+        this.userFavorites = value;
+      });
     this.reloadCurrentRoute();
   }
   reloadCurrentRoute() {
     let currentUrl = this.router.url;
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-        this.router.navigate([currentUrl]);
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
     });
-}
-
-
+  }
 }

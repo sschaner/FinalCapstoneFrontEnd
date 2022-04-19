@@ -6,9 +6,6 @@ import { FormGroup } from '@angular/forms';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { User } from 'src/app/classes/UserClass';
 import { IUser } from 'src/app/interfaces/IUser';
-import { waitForAsync } from '@angular/core/testing';
-
-
 
 @Component({
   selector: 'app-user-register',
@@ -16,17 +13,30 @@ import { waitForAsync } from '@angular/core/testing';
   styleUrls: ['./user-register.component.css'],
 })
 export class UserRegisterComponent implements OnInit {
-  
-  constructor(private userService: UserRepositoryService, private router: Router, private formBuilder: RxFormBuilder) {}
+  constructor(
+    private userService: UserRepositoryService,
+    private router: Router,
+    private formBuilder: RxFormBuilder
+  ) {}
 
   ngOnInit(): void {
-    this.user = new User;
-    this.userFormGroup = this.formBuilder.formGroup(this.user)
+    this.user = new User();
+    this.userFormGroup = this.formBuilder.formGroup(this.user);
+  }
+
+  ngAfterViewInit() {
+    document.querySelector('body').classList.add('bg-register');
+    document.querySelector('nav').classList.add('gray');
+  }
+
+  ngOnDestroy() {
+    document.querySelector('body').classList.remove('bg-register');
+    document.querySelector('nav').classList.remove('gray');
   }
 
   userFormGroup: FormGroup;
   user: User;
-  errorObject = {}
+  errorObject = {};
   currentUser: IUser;
   private tempUser: IUser = {
     userId: -1,
@@ -36,17 +46,15 @@ export class UserRegisterComponent implements OnInit {
   };
   successMessage = '';
 
-
-
-   saveNewUser(form: NgForm) {
+  saveNewUser(form: NgForm) {
     let user = form.form.value;
-    console.log(user)
+    console.log(user);
     this.userService.saveNewUser(user);
     //this.userService.saveNewUser(user);
     this.userService.setCurrentUser(user);
 
-   // this.router.navigate(['/trail-search']);
-  } 
+    // this.router.navigate(['/trail-search']);
+  }
 
   onSubmit() {
     console.log('Valid?', this.userFormGroup.valid); // true or false
@@ -54,15 +62,14 @@ export class UserRegisterComponent implements OnInit {
     console.log('first name', this.userFormGroup.value.firstName);
     console.log('last name', this.userFormGroup.value.lastName);
     let user = this.userFormGroup.value;
-    console.log("user:", user);
+    console.log('user:', user);
     this.userService.saveNewUser(user);
-    console.log(user.email)
+    console.log(user.email);
     this.successMessage =
-      "Success! Thanks for joining the Sunny-Trails Community. Sign in above to coninute.";
+      'Success! Thanks for joining the Sunny-Trails Community. Sign in above to coninute.';
     //this.userService.loginUser(user.email);
 
-    
-   /*  this.userService.returnUserByEmail(user.email).subscribe((value) => {
+    /*  this.userService.returnUserByEmail(user.email).subscribe((value) => {
       this.currentUser = value;
       this.tempUser.userId = this.currentUser.userId;
       this.tempUser.firstName = this.currentUser.firstName;
@@ -70,9 +77,9 @@ export class UserRegisterComponent implements OnInit {
       this.tempUser.email = this.currentUser.email;
     }); */
     //this.userService.setCurrentUser(this.tempUser);
-    
+
     //console.log('temp user:', this.tempUser)
-    
+
     //this.userService.setCurrentUser(this.tempUser);
     //this.router.navigate(['/trail-search']);
   }
