@@ -38,6 +38,5 @@ export class NavigationComponent implements OnInit {
   login(form: NgForm) {
     let email = form.form.value.email;
     this.userService.loginUser(email);
-    this.router.navigate(['/trail-search']);
   }
 }

@@ -1,20 +1,11 @@
-/* #trail-search-page {
-  background-image: url("/assets/img/bike-trail-through-woods.jpg");
-  background-size: cover;
-} */
-
-:host {
-  /* background: url("/assets/img/bike-trail-through-woods.jpg") #ccc; */
-  /* display: block;
-  background: red; */
-}
-
 .bg {
-  background-image: url("/assets/img/bike-trail-through-woods.jpg");
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  position: fixed;
+  opacity: 0.6;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
 }
 
 mat-expansion-panel {
@@ -23,6 +14,12 @@ mat-expansion-panel {
 
 .location-weather ul {
   list-style-type: none;
+}
+
+.location-weather {
+  background-color: #ccc;
+  opacity: 0.8;
+  border-radius: 20px;
 }
 
 .search-item-icons:not(:first-child) {

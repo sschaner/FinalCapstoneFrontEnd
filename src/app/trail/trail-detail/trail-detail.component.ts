@@ -13,7 +13,7 @@ export class TrailDetailComponent implements OnInit {
   trailId: number = 1;
   faHandPointLeft = faHandPointLeft;
   zoom = 12;
-  center!: google.maps.LatLngLiteral;
+  center: google.maps.LatLngLiteral;
   options: google.maps.MapOptions = {
     mapTypeId: 'hybrid',
     zoomControl: true,
