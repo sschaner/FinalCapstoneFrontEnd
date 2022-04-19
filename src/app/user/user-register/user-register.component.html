@@ -68,6 +68,13 @@
     (closed)="successMessage = ''"
     >{{ successMessage }}
   </ngb-alert>
+  <ngb-alert
+    #selfClosingAlert
+    *ngIf="failureMessage"
+    type="danger"
+    (closed)="failureMessage = ''"
+    >{{ failureMessage }}
+  </ngb-alert>
     <div class="form-group">
       <label>Email </label>
       <input type="text" formControlName="email" class="form-control" placeholder="email@email.com">
@@ -87,5 +94,7 @@
     <button [disabled]="!userFormGroup.valid" class="btn btn-primary">Submit</button>
   </form>
 </div>
+
+
 
 

@@ -6,6 +6,11 @@ import { FormGroup } from '@angular/forms';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { User } from 'src/app/classes/UserClass';
 import { IUser } from 'src/app/interfaces/IUser';
+import { waitForAsync } from '@angular/core/testing';
+
+import { retry, catchError } from 'rxjs/operators';
+
+
 
 @Component({
   selector: 'app-user-register',
@@ -36,17 +41,18 @@ export class UserRegisterComponent implements OnInit {
 
   userFormGroup: FormGroup;
   user: User;
-  errorObject = {};
+  newUser: any;
+  errorObject = {}
+
   currentUser: IUser;
-  private tempUser: IUser = {
-    userId: -1,
-    firstName: '',
-    lastName: '',
-    email: '',
-  };
   successMessage = '';
 
-  saveNewUser(form: NgForm) {
+  failureMessage = '';
+  tempUser: IUser | any = {};
+  makeNewUser: boolean;
+
+
+   saveNewUser(form: NgForm) {
     let user = form.form.value;
     console.log(user);
     this.userService.saveNewUser(user);
@@ -56,31 +62,35 @@ export class UserRegisterComponent implements OnInit {
     // this.router.navigate(['/trail-search']);
   }
 
-  onSubmit() {
-    console.log('Valid?', this.userFormGroup.valid); // true or false
-    console.log('Email', this.userFormGroup.value.email);
-    console.log('first name', this.userFormGroup.value.firstName);
-    console.log('last name', this.userFormGroup.value.lastName);
-    let user = this.userFormGroup.value;
-    console.log('user:', user);
+
+
+   async onSubmit() {
+    this.failureMessage = '';
+    this.successMessage = '';
+    this.tempUser = {}
+      
+    this.tempUser = await this.userService.returnUserByEmail(this.userFormGroup.value.email).toPromise();    
+    
+     if(this.tempUser === null || this.tempUser === undefined){
+       this.makeNewUser = true;
+     }else{
+       this.makeNewUser = false;
+     }
+
+    if(this.makeNewUser === true){
+      let user = this.userFormGroup.value;
+    console.log("user being created:", user);
     this.userService.saveNewUser(user);
-    console.log(user.email);
     this.successMessage =
-      'Success! Thanks for joining the Sunny-Trails Community. Sign in above to coninute.';
-    //this.userService.loginUser(user.email);
+      "Success! Thanks for joining the Sunny-Trails Community. Sign in above to continue.";
+      
+    } else{
+      console.log('triggered final else statement in onsubmit method')
+      this.failureMessage = 'Sorry, looks like there is already a user with that email. Try another to get started!';
+    }  
 
-    /*  this.userService.returnUserByEmail(user.email).subscribe((value) => {
-      this.currentUser = value;
-      this.tempUser.userId = this.currentUser.userId;
-      this.tempUser.firstName = this.currentUser.firstName;
-      this.tempUser.lastName = this.currentUser.lastName;
-      this.tempUser.email = this.currentUser.email;
-    }); */
-    //this.userService.setCurrentUser(this.tempUser);
-
-    //console.log('temp user:', this.tempUser)
-
-    //this.userService.setCurrentUser(this.tempUser);
-    //this.router.navigate(['/trail-search']);
   }
+  
+
+
 }
