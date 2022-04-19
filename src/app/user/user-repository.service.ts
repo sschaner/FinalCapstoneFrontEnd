@@ -41,8 +41,8 @@ export class UserRepositoryService {
   }
 
   returnUserByEmail(email: string) {
-    console.log(`${this.apiUri}?searchTerm=${email}`)
-    return this.http.get<any>(`${this.apiUri}?searchTerm=${email}`);
+    return this.http.get(`${this.apiUri}?searchTerm=${email}`);
+    
   }
 
   getCurrentUser(): Observable<IUser> {

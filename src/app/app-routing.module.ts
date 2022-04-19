@@ -8,7 +8,7 @@ import { UserRegisterComponent } from './user/user-register/user-register.compon
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent },
-  {path: 'app-user-details', component: UserDetailsComponent},
+  { path: 'app-user-details', component: UserDetailsComponent },
   { path: 'register', component: UserRegisterComponent },
   { path: 'trail-search', component: TrailSearchComponent },
   {
@@ -22,4 +22,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
