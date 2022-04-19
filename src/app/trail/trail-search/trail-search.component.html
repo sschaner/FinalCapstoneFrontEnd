@@ -1,4 +1,4 @@
-<div class="bg"></div>
+<img class="bg" src="/assets/img/bike-trail-through-woods.jpg" />
 <div class="pt-90px">
   <h1 class="text-center" *ngIf="currentUser.userId !== -1">
     Welcome {{ currentUser.firstName }}
@@ -27,8 +27,8 @@
     </form>
   </div>
 
-  <div class="row">
-    <div class="location-weather text-center">
+  <div *ngIf="trailResult.length > 0" class="row justify-content-center">
+    <div class="location-weather text-center w-auto m-4 p-4">
       <h3>Current Weather in {{ weatherResult.location.name }}</h3>
       <div>
         Current Temp (&#8457;): {{ weatherResult.current.temp_f }}&#8457;
@@ -52,7 +52,7 @@
   </ngb-alert>
 
   <div class="row">
-    <h3 *ngIf="trailResult.length > 0">
+    <h3 class="text-white" *ngIf="trailResult.length > 0">
       Trails Near {{ weatherResult.location.name }}
     </h3>
     <div *ngFor="let trail of trailResult">

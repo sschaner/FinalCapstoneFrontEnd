@@ -9,3 +9,34 @@ mat-expansion-panel {
 .search-item-icons:hover {
   cursor: pointer;
 }
+
+.user-details-container {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-areas:
+    "userDetailsTitle"
+    "userInformation"
+    "favoriteTrailsList";
+}
+
+.user-details-title {
+  grid-area: userDetailsTitle;
+}
+
+.user-information {
+  grid-area: userInformation;
+}
+
+.favorite-trails-list {
+  grid-area: favoriteTrailsList;
+}
+
+@media (min-width: 992px) {
+  .user-details-container {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-areas:
+      "userDetailsTitle userDetailsTitle"
+      "userInformation favoriteTrailsList";
+  }
+}

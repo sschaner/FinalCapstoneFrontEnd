@@ -1,34 +1,59 @@
-<div class="pt-90px">
-  <h1 class="text-center">
-    Welcome {{ currentUser.firstName }} {{ currentUser.lastName }}
-  </h1>
+<div class="pt-90px user-details-container">
+  <div class="user-details-title">
+    <h1 class="text-center">
+      Welcome to Your Dashboard<br />{{ currentUser.firstName }}
+      {{ currentUser.lastName }}
+    </h1>
+  </div>
 
-  <h3>You have favorited a total of {{ userFavorites.length }} trails</h3>
-  <div *ngFor="let favorite of userFavorites">
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          {{ favorite.name }}
-        </mat-panel-title>
-        <mat-panel-description>
-          <h5>Length: {{ favorite.length }}</h5>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <div>{{ favorite.description }}</div>
-      <div class="d-flex">
-        <a
-          class="search-item-icons"
-          [routerLink]="['/trail-detail', favorite.id]"
-        >
-          <fa-icon class="fa-xl" [icon]="faCircleInfo"></fa-icon>
-        </a>
-        <a
-          class="search-item-icons text-warning"
-          (click)="removeTrailFromFavorites(favorite.id)"
-        >
-          <fa-icon class="fa-xl" [icon]="faHeartCircleMinus"></fa-icon>
-        </a>
-      </div>
-    </mat-expansion-panel>
+  <div class="user-information">
+    <h3>User Details</h3>
+    <table class="table table-sm table-bordered">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ currentUser.firstName }}</td>
+          <td>{{ currentUser.lastName }}</td>
+          <td>{{ currentUser.email }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="favorite-trail-list">
+    <h3>You have favorited a total of {{ userFavorites.length }} trails</h3>
+    <div *ngFor="let favorite of userFavorites">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ favorite.name }}
+          </mat-panel-title>
+          <mat-panel-description>
+            <h5>Length: {{ favorite.length }}</h5>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div>{{ favorite.description }}</div>
+        <div class="d-flex">
+          <a
+            class="search-item-icons"
+            [routerLink]="['/trail-detail', favorite.id]"
+          >
+            <fa-icon class="fa-xl" [icon]="faCircleInfo"></fa-icon>
+          </a>
+          <a
+            class="search-item-icons text-warning"
+            (click)="removeTrailFromFavorites(favorite.id)"
+          >
+            <fa-icon class="fa-xl" [icon]="faHeartCircleMinus"></fa-icon>
+          </a>
+        </div>
+      </mat-expansion-panel>
+    </div>
   </div>
 </div>
