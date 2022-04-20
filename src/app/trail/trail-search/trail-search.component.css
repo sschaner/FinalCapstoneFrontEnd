@@ -10,18 +10,38 @@
 
 mat-expansion-panel {
   margin-top: 0.5%;
+  
 }
 
 .location-weather ul {
   list-style-type: none;
 }
 
-.location-weather,
-.trail-search-title {
+.location-weather {
   background-color: #ccc;
   opacity: 0.8;
   border-radius: 20px;
 }
+
+.search-Title{
+  
+  font-size: 1rem;
+  font-weight: bold;
+  
+}
+
+@media(min-width: 765px){
+  .search-Title{
+    font-size: 2.9rem;
+  }        
+}
+
+.search-Description{
+  font-weight: bolder;
+  font-size: 1rem;
+
+}
+
 
 .temperature-fahrenheit {
   margin-right: 1rem;
