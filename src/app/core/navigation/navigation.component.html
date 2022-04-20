@@ -11,11 +11,7 @@
     </p>
   </div>
   <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-outline-dark"
-      (click)="modal.close('Close click')"
-    >
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">
       Close
     </button>
   </div>
@@ -25,91 +21,42 @@
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-light shadow p-3">
   <a class="navbar-brand" [routerLink]="['/home']">
-    <img
-      src="/assets/img/logo.png"
-      width="30"
-      height="30"
-      alt="Sunny Trails logo"
-    />
+    <img src="/assets/img/logo.png" width="30" height="30" alt="Sunny Trails logo" />
   </a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarNav"
-    aria-controls="navbarNav"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a
-          class="nav-link text-uppercase"
-          [routerLink]="['/home']"
-          routerLinkActive="active"
-          >Home</a
-        >
+        <a class="nav-link text-uppercase" [routerLink]="['/home']" routerLinkActive="active">Home</a>
       </li>
       <li class="nav-item active">
-        <a
-          class="nav-link text-uppercase"
-          [routerLink]="['/trail-search']"
-          routerLinkActive="active"
-          >Trails</a
-        >
+        <a class="nav-link text-uppercase" [routerLink]="['/trail-search']" routerLinkActive="active">Trails</a>
       </li>
       <li *ngIf="currentUser.userId !== -1" class="nav-item active">
-        <a
-          class="nav-link text-uppercase"
-          [routerLink]="['/app-user-details']"
-          routerLinkActive="active"
-          >Favorites</a
-        >
+        <a class="nav-link text-uppercase" [routerLink]="['/app-user-details']" routerLinkActive="active">Favorites</a>
       </li>
     </ul>
 
     <div class="d-flex align-items-center">
-      <form
-        *ngIf="currentUser.userId == -1"
-        class="form-inline my-2 my-lg-0 d-flex"
-        name="LoginUserForm"
-        #LoginUserForm="ngForm"
-      >
-        <input
-          class="form-control mr-sm-2"
-          type="text"
-          placeholder="email@something.com"
-          aria-label="login"
-          id="email"
-          name="email"
-          ngModel
-        />
-        <button
-          class="btn btn-outline-success my-2 my-sm-0 text-uppercase"
-          type="submit"
-          (click)="login(LoginUserForm, content)"
-        >
+      <form *ngIf="currentUser.userId == -1" class="form-inline my-2 my-lg-0 d-flex" name="LoginUserForm"
+        #LoginUserForm="ngForm">
+        <input class="form-control mr-sm-2" type="text" placeholder="email@something.com" aria-label="login" id="email"
+          name="email" ngModel />
+        <button class="btn btn-outline-success my-2 my-sm-0 text-uppercase" type="submit"
+          (click)="login(LoginUserForm, content)">
           login
         </button>
       </form>
-      <button
-        *ngIf="currentUser.userId !== -1"
-        class="btn btn-outline-success my-2 my-sm-0 text-uppercase"
-        (click)="logout()"
-      >
+      <button *ngIf="currentUser.userId !== -1" class="btn btn-outline-success my-2 my-sm-0 text-uppercase"
+        (click)="logout()">
         logout
       </button>
       <ul class="navbar-nav" *ngIf="currentUser.userId == -1">
         <li class="nav-item active">
-          <a
-            class="nav-link text-uppercase"
-            [routerLink]="['/register']"
-            routerLinkActive="active"
-            >register</a
-          >
+          <a class="nav-link text-uppercase" [routerLink]="['/register']" routerLinkActive="active">register</a>
         </li>
       </ul>
     </div>

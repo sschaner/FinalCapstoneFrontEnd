@@ -19,7 +19,7 @@ export class NavigationComponent implements OnInit {
     private userService: UserRepositoryService,
     private router: Router,
     private modalService: NgbModal
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.userService.getCurrentUser().subscribe((value) => {

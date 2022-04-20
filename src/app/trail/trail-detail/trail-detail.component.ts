@@ -29,7 +29,7 @@ export class TrailDetailComponent implements OnInit {
   constructor(
     private trailService: TrailRepositoryService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.trailId = this.route.snapshot.params['trailId'];

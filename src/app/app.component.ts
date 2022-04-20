@@ -9,7 +9,7 @@ import { ReactiveFormConfig } from '@rxweb/reactive-form-validators';
 export class AppComponent {
   title = 'FinalCapstoneFrontend';
 
-  ngOnInit(){
+  ngOnInit() {
     ReactiveFormConfig.set({
       validationMessage: {
         required: 'This field is required.',
@@ -17,6 +17,6 @@ export class AppComponent {
         alpha: 'Only letters please!',
         email: 'Please enter a valid email in the form of \'something@something.com\''
       }
-  });
-}
+    });
+  }
 }

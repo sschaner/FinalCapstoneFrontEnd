@@ -1,22 +1,9 @@
-import {
-  Component,
-  OnInit,
-  EventEmitter,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { TrailRepositoryService } from '../trail-repository.service';
 import { WeatherRepositoryService } from '../weather-repository.service';
-import { Subject } from 'rxjs';
-import { debounceTime } from 'rxjs';
-import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
 
-import {
-  faCircleInfo,
-  faHeartCirclePlus,
-  faHeartCircleMinus,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCircleInfo, faHeartCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { UserRepositoryService } from 'src/app/user/user-repository.service';
 
 @Component({
@@ -29,30 +16,19 @@ export class TrailSearchComponent implements OnInit {
   weatherResult: any = [];
   faCircleInfo = faCircleInfo;
   faHeartCirclePlus = faHeartCirclePlus;
-  faHeartCircleMinus = faHeartCircleMinus;
   currentUser: any;
   successMessage = '';
-  staticAlertClosed = false;
-  private _success = new Subject<string>();
-  @ViewChild('selfClosingAlert', { static: false }) selfClosingAlert: NgbAlert;
+  failureMessage = '';
 
   constructor(
     private trailService: TrailRepositoryService,
     private weatherService: WeatherRepositoryService,
     private userService: UserRepositoryService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    console.log('trail search on init ran');
     this.userService.getCurrentUser().subscribe((value) => {
       this.currentUser = value;
-    });
-    console.log('current user', this.currentUser);
-    this._success.subscribe((message) => (this.successMessage = message));
-    this._success.pipe(debounceTime(1500)).subscribe(() => {
-      if (this.selfClosingAlert) {
-        this.selfClosingAlert.close();
-      }
     });
   }
 
@@ -70,7 +46,7 @@ export class TrailSearchComponent implements OnInit {
       .searchTrails(location)
       .subscribe((response) => {
         this.trailResult = response;
-      });
+      }, err => { this.trailResult = [], this.failureMessage = 'Sorry, it does not look like we have any info on trails in this area! Try another city or postal code.' });
 
     this.weatherResult = this.weatherService
       .getCurrentWeather(location)
@@ -85,6 +61,4 @@ export class TrailSearchComponent implements OnInit {
     this.successMessage =
       "Success! You can view all your favorited trails on the 'Favorites' page.";
   }
-
-  removeTrailFromFavorites(id: number) {}
 }

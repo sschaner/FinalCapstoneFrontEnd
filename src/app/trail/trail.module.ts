@@ -22,4 +22,4 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   exports: [TrailSearchComponent, TrailDetailComponent],
 })
-export class TrailModule {}
+export class TrailModule { }
