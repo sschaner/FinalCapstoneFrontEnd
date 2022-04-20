@@ -4,14 +4,13 @@
     Welcome {{ currentUser.firstName }}
   </h1>
   <div class="row justify-content-center">
-    <div class="trail-search-title text-uppercase text-center w-auto m-3 p-3">
-      <h1>Trail Search</h1>
-      <p>Find your next trail</p>
+    <div class="trail-search-title text-center w-auto m-3 p-3">
+      <h1 class="search-Title text-uppercase ">Find your next trail</h1>
+      <p class="search-Description">Enter a US city name or postal code to get started</p>
     </div>
   </div>
   <div class="row">
     <form class="form-inline text-center" #locationForm="ngForm" (ngSubmit)="searchTrails(locationForm)">
-      <label class="sr-only" for="location">Location:</label>
       <input name="location" id="location" class="" placeholder="Enter a city/zip code" ngModel />
       <button type="submit" class="btn btn-sm btn-danger">Search</button>
     </form>
