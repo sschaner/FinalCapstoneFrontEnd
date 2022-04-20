@@ -6,11 +6,6 @@ import { FormGroup } from '@angular/forms';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { User } from 'src/app/classes/UserClass';
 import { IUser } from 'src/app/interfaces/IUser';
-import { waitForAsync } from '@angular/core/testing';
-
-import { retry, catchError } from 'rxjs/operators';
-
-
 
 @Component({
   selector: 'app-user-register',
@@ -22,7 +17,17 @@ export class UserRegisterComponent implements OnInit {
     private userService: UserRepositoryService,
     private router: Router,
     private formBuilder: RxFormBuilder
-  ) {}
+  ) { }
+
+  userFormGroup: FormGroup;
+  user: User;
+  newUser: any;
+  errorObject = {}
+  currentUser: IUser;
+  successMessage = '';
+  failureMessage = '';
+  tempUser: IUser | any = {};
+  makeNewUser: boolean;
 
   ngOnInit(): void {
     this.user = new User();
@@ -39,58 +44,36 @@ export class UserRegisterComponent implements OnInit {
     document.querySelector('nav').classList.remove('gray');
   }
 
-  userFormGroup: FormGroup;
-  user: User;
-  newUser: any;
-  errorObject = {}
-
-  currentUser: IUser;
-  successMessage = '';
-
-  failureMessage = '';
-  tempUser: IUser | any = {};
-  makeNewUser: boolean;
-
-
-   saveNewUser(form: NgForm) {
+  saveNewUser(form: NgForm) {
     let user = form.form.value;
-    console.log(user);
     this.userService.saveNewUser(user);
-    //this.userService.saveNewUser(user);
     this.userService.setCurrentUser(user);
-
-    // this.router.navigate(['/trail-search']);
   }
 
-
-
-   async onSubmit() {
+  async onSubmit() {
     this.failureMessage = '';
     this.successMessage = '';
     this.tempUser = {}
-      
-    this.tempUser = await this.userService.returnUserByEmail(this.userFormGroup.value.email).toPromise();    
-    
-     if(this.tempUser === null || this.tempUser === undefined){
-       this.makeNewUser = true;
-     }else{
-       this.makeNewUser = false;
-     }
 
-    if(this.makeNewUser === true){
+    this.tempUser = await this.userService.returnUserByEmail(this.userFormGroup.value.email).toPromise();
+
+    if (this.tempUser === null || this.tempUser === undefined) {
+      this.makeNewUser = true;
+    } else {
+      this.makeNewUser = false;
+    }
+
+    if (this.makeNewUser === true) {
       let user = this.userFormGroup.value;
-    console.log("user being created:", user);
-    this.userService.saveNewUser(user);
-    this.successMessage =
-      "Success! Thanks for joining the Sunny-Trails Community. Sign in above to continue.";
-      
-    } else{
+      console.log("user being created:", user);
+      this.userService.saveNewUser(user);
+      this.successMessage =
+        "Success! Thanks for joining the Sunny-Trails Community. Sign in above to continue.";
+
+    } else {
       console.log('triggered final else statement in onsubmit method')
       this.failureMessage = 'Sorry, looks like there is already a user with that email. Try another to get started!';
-    }  
+    }
 
   }
-  
-
-
 }
