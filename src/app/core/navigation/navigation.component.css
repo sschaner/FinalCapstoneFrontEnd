@@ -6,6 +6,10 @@
   color: rgba(255, 184, 0, 0.55);
 }
 
+.gray {
+  background-color: rgba(74, 74, 74, 1);
+}
+
 .modal-header,
 .modal-footer {
   background-color: #c96d63;
