@@ -9,12 +9,9 @@
     <div class="row mt-3">
       <div class="card mb-3 p-0">
         <div class="row g-0">
-          <div class="col-md-4">
-            <img
-              src="{{ trail.thumbnail }}"
-              class="img-fluid rounded-start"
-              alt="Picture of trail"
-            />
+          <div class="col-md-4" *ngIf="trail.thumbnail !== null">
+            <img src="{{ trail.thumbnail }}" class="img-fluid rounded-start" alt="Picture of trail" height="300"
+              width="300" />
           </div>
           <div class="col-md-8">
             <div class="card-body">
@@ -42,17 +39,8 @@
       </div>
     </div>
     <div class="trail-map">
-      <google-map
-        height="500px"
-        width="100%"
-        [zoom]="zoom"
-        [center]="center"
-        [options]="options"
-      >
-        <map-marker
-          [position]="marker.position"
-          [options]="marker.options"
-        ></map-marker>
+      <google-map height="500px" width="100%" [zoom]="zoom" [center]="center" [options]="options">
+        <map-marker [position]="marker.position" [options]="marker.options"></map-marker>
       </google-map>
     </div>
   </div>
