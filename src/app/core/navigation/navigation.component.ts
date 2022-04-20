@@ -4,7 +4,6 @@ import { UserRepositoryService } from 'src/app/user/user-repository.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Content } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
   selector: 'app-navigation',
@@ -19,7 +18,7 @@ export class NavigationComponent implements OnInit {
     private userService: UserRepositoryService,
     private router: Router,
     private modalService: NgbModal
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.userService.getCurrentUser().subscribe((value) => {
