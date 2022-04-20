@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRepositoryService } from '../user-repository.service';
-import {
-  faCircleInfo,
-  faHeartCircleMinus,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCircleInfo, faHeartCircleMinus } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +12,7 @@ export class UserDetailsComponent implements OnInit {
   constructor(
     private userService: UserRepositoryService,
     private router: Router
-  ) {}
+  ) { }
 
   currentUser: any;
   userFavorites: any = [];

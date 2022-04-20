@@ -14,16 +14,13 @@ export class UserRepositoryService {
     lastName: '',
     email: '',
   };
-  private _currentUser: BehaviorSubject<IUser> | any = new BehaviorSubject(
-    this.tempUser
-  );
+  private _currentUser: BehaviorSubject<IUser> | any = new BehaviorSubject(this.tempUser);
   private user: any;
 
   private apiUri = 'https://capstoneprojectapiservice.azure-api.net/api/User';
-  private favoritesApiUri =
-    'https://capstoneprojectapiservice.azure-api.net/api/UserTrail';
+  private favoritesApiUri = 'https://capstoneprojectapiservice.azure-api.net/api/UserTrail';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   saveNewUser(user) {
     return this.http.post(this.apiUri, user).subscribe();
@@ -42,7 +39,7 @@ export class UserRepositoryService {
 
   returnUserByEmail(email: string) {
     return this.http.get(`${this.apiUri}?searchTerm=${email}`);
-    
+
   }
 
   getCurrentUser(): Observable<IUser> {
@@ -74,9 +71,6 @@ export class UserRepositoryService {
   }
 
   deleteTrailFromFavorites(userId: number, trailId: number) {
-    /* return this.http.delete(
-      `${this.favoritesApiUri}?userId=${userId}&trailId=${trailId}`
-    ); */
     return this.http.delete(`https://finalcapstonebackend20220406191528.azurewebsites.net/api/UserTrail?userId=${userId}&trailId=${trailId}`);
   }
 }
