@@ -29,7 +29,7 @@ export class TrailDetailComponent implements OnInit {
   constructor(
     private trailService: TrailRepositoryService,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.trailId = this.route.snapshot.params['trailId'];
@@ -48,6 +48,7 @@ export class TrailDetailComponent implements OnInit {
             lat: this.latitude,
             lng: this.longitude,
           },
+          // Creates a bouncing animation for the pin
           // options: { animation: google.maps.Animation.BOUNCE },
         };
       });
