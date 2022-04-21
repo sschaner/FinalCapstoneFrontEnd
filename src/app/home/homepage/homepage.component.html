@@ -1,11 +1,18 @@
 <video autoplay [muted]="true" loop id="homepageVideo">
-  <source src="https://capstonestorageztss.blob.core.windows.net/resources/riding-through-mountains-hd.mp4"
-    type="video/mp4" />
+  <source
+    src="https://capstonestorageztss.blob.core.windows.net/resources/riding-through-mountains-hd.mp4"
+    type="video/mp4"
+  />
 </video>
-<div class="title-content text-center d-flex flex-column justify-content-center align-items-center">
+<div
+  class="title-content text-center d-flex flex-column justify-content-center align-items-center"
+>
   <h3 class="title-content__subtitle text-uppercase">find your next trail</h3>
   <h1 class="title-content__main-title text-uppercase">sunny - trails</h1>
-  <ngb-carousel [showNavigationArrows]="false" [showNavigationIndicators]="false">
+  <ngb-carousel
+    [showNavigationArrows]="false"
+    [showNavigationIndicators]="false"
+  >
     <ng-template ngbSlide>
       <h3 class="text-uppercase">Bike</h3>
     </ng-template>
@@ -17,3 +24,4 @@
     </ng-template>
   </ngb-carousel>
 </div>
+<app-footer></app-footer>
