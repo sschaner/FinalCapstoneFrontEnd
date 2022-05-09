@@ -1,3 +1,8 @@
 ngb-alert {
-    text-align: center;
-  }
+  text-align: center;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
