@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserRepositoryService } from '../user-repository.service';
-import { FormGroup } from '@angular/forms';
-import { RxFormBuilder } from '@rxweb/reactive-form-validators';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { User } from 'src/app/classes/UserClass';
 import { IUser } from 'src/app/interfaces/IUser';
 
@@ -14,7 +18,7 @@ import { IUser } from 'src/app/interfaces/IUser';
 export class UserRegisterComponent implements OnInit {
   constructor(
     private userService: UserRepositoryService,
-    private formBuilder: RxFormBuilder
+    private formBuilder: FormBuilder
   ) {}
 
   userFormGroup: FormGroup;
@@ -27,9 +31,31 @@ export class UserRegisterComponent implements OnInit {
   tempUser: IUser | any = {};
   makeNewUser: boolean;
 
+  validationMessages = {
+    FirstName: [
+      { type: 'required', message: 'First name is required.' },
+      {
+        type: 'maxlength',
+        message: 'First name must be 100 characters or less.',
+      },
+    ],
+    LastName: [
+      { type: 'required', message: 'Last name is required.' },
+      {
+        type: 'maxlength',
+        message: 'Last name must be 100 characters or less.',
+      },
+    ],
+    Email: [
+      { type: 'required', message: 'Email is required.' },
+      { type: 'pattern', message: 'Enter a valid email.' },
+    ],
+  };
+
   ngOnInit(): void {
     this.user = new User();
-    this.userFormGroup = this.formBuilder.formGroup(this.user);
+    this.userFormGroup = this.formBuilder.group(this.user);
+    this.createForm();
   }
 
   ngAfterViewInit() {
@@ -48,9 +74,29 @@ export class UserRegisterComponent implements OnInit {
     this.userService.setCurrentUser(user);
   }
 
-  async onSubmit() {
-    this.failureMessage = '';
-    this.successMessage = '';
+  createForm() {
+    this.userFormGroup = this.formBuilder.group({
+      FirstName: [
+        '',
+        Validators.compose([Validators.required, Validators.maxLength(100)]),
+      ],
+      LastName: [
+        '',
+        Validators.compose([Validators.required, Validators.maxLength(100)]),
+      ],
+      Email: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.pattern('^[a-zA-Z0-9.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
+        ])
+      ),
+    });
+  }
+
+  async onSubmitRegister(registerValue: any) {
+    this.userService.saveNewUser(registerValue).subscribe();
+    this.createForm();
     this.tempUser = {};
 
     this.tempUser = await this.userService
