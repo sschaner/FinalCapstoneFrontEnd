@@ -60,7 +60,6 @@ export class TrailSearchComponent implements OnInit {
     this.trailResult = this.trailService.searchTrails(location).subscribe(
       (response) => {
         this.trailResult = response;
-        console.log(this.trailLengths);
         if (this.trailLengths.length >= 0) {
           this.trailLengths = [];
         }
@@ -70,14 +69,11 @@ export class TrailSearchComponent implements OnInit {
         if (this.trailNames.length >= 0) {
           this.trailNames = [];
         }
-        console.log(this.trailLengths);
         for (var i = 0; i < this.trailResult.length; i++) {
           this.trailLengths.push(parseFloat(this.trailResult[i].length));
           this.trailRatings.push(parseFloat(this.trailResult[i].rating));
           this.trailNames.push(this.trailResult[i].name);
         }
-        console.log(this.trailLengths);
-
         this.loadTrailBarChart();
       },
       (err) => {
