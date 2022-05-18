@@ -10,7 +10,6 @@
 
 mat-expansion-panel {
   margin-top: 0.5%;
-  
 }
 
 .location-weather ul {
@@ -23,25 +22,21 @@ mat-expansion-panel {
   border-radius: 20px;
 }
 
-.search-Title{
-  
+.search-Title {
   font-size: 1rem;
   font-weight: bold;
-  
 }
 
-@media(min-width: 765px){
-  .search-Title{
+@media (min-width: 765px) {
+  .search-Title {
     font-size: 2.9rem;
-  }        
+  }
 }
 
-.search-Description{
+.search-Description {
   font-weight: bolder;
   font-size: 1rem;
-
 }
-
 
 .temperature-fahrenheit {
   margin-right: 1rem;
@@ -61,4 +56,8 @@ ngb-alert {
 
 .first-search-item-return {
   margin-right: 00.5rem;
+}
+
+#trail-length-bar-chart {
+  background-color: #fff;
 }

@@ -31,6 +31,7 @@
     "@rxweb/reactive-form-validators": "^2.1.6",
     "@types/googlemaps": "^3.43.3",
     "bootstrap": "^5.1.3",
+    "chart.js": "^3.7.1",
     "http-params": "^1.0.1",
     "jquery": "^3.6.0",
     "rxjs": "~7.5.0",
