@@ -40,7 +40,7 @@ export class TrailSearchComponent implements OnInit {
     this.userService.getCurrentUser().subscribe((value) => {
       this.currentUser = value;
     });
-    this.trailBarChart = document.querySelector('#trail-length-bar-chart');
+
     Chart.register(...registerables);
   }
 
@@ -60,11 +60,23 @@ export class TrailSearchComponent implements OnInit {
     this.trailResult = this.trailService.searchTrails(location).subscribe(
       (response) => {
         this.trailResult = response;
+        console.log(this.trailLengths);
+        if (this.trailLengths.length >= 0) {
+          this.trailLengths = [];
+        }
+        if (this.trailRatings.length >= 0) {
+          this.trailRatings = [];
+        }
+        if (this.trailNames.length >= 0) {
+          this.trailNames = [];
+        }
+        console.log(this.trailLengths);
         for (var i = 0; i < this.trailResult.length; i++) {
           this.trailLengths.push(parseFloat(this.trailResult[i].length));
           this.trailRatings.push(parseFloat(this.trailResult[i].rating));
           this.trailNames.push(this.trailResult[i].name);
         }
+        console.log(this.trailLengths);
 
         this.loadTrailBarChart();
       },
@@ -90,8 +102,18 @@ export class TrailSearchComponent implements OnInit {
   }
 
   loadTrailBarChart() {
+    // console.log(this.trailBarChartCanvas);
+    // if (this.trailBarChartCanvas) {
+    //   console.log('update');
+    //   this.trailBarChartCanvas.update();
+    // }
+
+    const trailChart = <HTMLCanvasElement>(
+      document.getElementById('trail-length-bar-chart')
+    );
+    const ctx = trailChart.getContext('2d');
     this.trailBarChartVisibility = true;
-    this.trailBarChartCanvas = new Chart(this.trailBarChart, {
+    this.trailBarChartCanvas = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: this.trailNames,
